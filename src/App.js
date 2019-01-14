@@ -5,6 +5,9 @@ import Login from "./Components/Login";
 // import { Switch, Route, Redirect } from "react-router";
 import AppBar from "./Components/AppBar";
 import Ratings from "./Components/Ratings";
+
+const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+
 class App extends Component {
   render() {
     return (
