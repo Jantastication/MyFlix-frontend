@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-
-export default class Ratings extends Component {
+import { connect } from "react-redux";
+import { test } from "../actions/actionCreators";
+class Ratings extends Component {
   constructor() {
     super();
     this.state = {
@@ -23,7 +24,27 @@ export default class Ratings extends Component {
     return (
       <div>
         <h1>Ratings</h1>
+        <button onClick={this.props.makeTestFalse}>
+          Test is {this.props.test}
+        </button>
       </div>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    makeTestFalse: () => dispatch(test())
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    test: state.test
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Ratings);
