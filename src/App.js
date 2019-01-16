@@ -5,6 +5,10 @@ import Login from "./Components/Login";
 // import { Switch, Route, Redirect } from "react-router";
 import AppBar from "./Components/AppBar";
 import Ratings from "./Components/Ratings";
+import RatingsForm from "./Components/RatingsForm";
+
+const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+
 class App extends Component {
   render() {
     return (
@@ -12,6 +16,8 @@ class App extends Component {
         <AppBar />
         <Login />
         <Ratings />
+        <hr />
+        <RatingsForm />
 
         {/* <Router>
           <Switch>
