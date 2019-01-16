@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 // import { reducer } from "./state/reducer";
-// import { initialState } from "./state/initial";
+// import { initialState } from "./store";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 

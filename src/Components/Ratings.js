@@ -1,50 +1,67 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { test } from "../actions/actionCreators";
+import PropTypes from "prop-types";
+// import { test } from "../actions/actionCreators";
+import { fetchRatings } from "../actions/actionCreators";
+
 class Ratings extends Component {
-  constructor() {
-    super();
-    this.state = {
-      ratings: []
-    };
+  componentWillMount() {
+    this.props.fetchRatings();
   }
 
-  ComponentWillMount() {
-    fetch("http://localhost:3000/api/v1/ratings")
-      .then(res => res.json())
-      .then(data => this.setState({ ratings: data }));
-  }
   render() {
-    const ratingItems = this.state.ratings.map(rating => (
-      <div key={rating.id}>
-        <h3>{rating.score}</h3>
-        <p>{rating.comment}</p>
-      </div>
-    ));
+    const ratingItems =
+      [] ||
+      this.props.ratings.map(rating => (
+        <div key={rating.id}>
+          <h3>{rating.score}</h3>
+          <p>{rating.comment}</p>
+        </div>
+      ));
+    // console.log(this.state);
     return (
       <div>
         <h1>Ratings</h1>
-        <button onClick={this.props.makeTestFalse}>
+        {ratingItems}
+        {/* <button onClick={this.props.makeTestFalse}>
           Test is {this.props.test}
-        </button>
+        </button> */}
       </div>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    makeTestFalse: () => dispatch(test())
-  };
+Ratings.propTypes = {
+  fetchRatings: PropTypes.func.isRequired,
+  ratings: PropTypes.array.isRequired,
+  newRating: PropTypes.object
 };
 
-const mapStateToProps = state => {
-  return {
-    test: state.test
-  };
-};
+const mapStateToProps = state => ({
+  ratings: state.ratings
+  // .items
+});
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     makeTestFalse: () => dispatch(test())
+//   };
+// };
+
+// const mapStateToProps = state => {
+//   return {
+//     test: state.test
+//   };
+// };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { fetchRatings }
 )(Ratings);
+
+// export default connect(
+//   mapStateToProps,
+//   // mapDispatchToProps,
+
+//   { fetchRatings }
+// )(Ratings);
