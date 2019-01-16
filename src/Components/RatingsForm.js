@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { createRating } from "../actions/actionCreators";
+import PropTypes from "prop-types";
 
-export default class RatingsForm extends Component {
+class RatingsForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -23,15 +26,7 @@ export default class RatingsForm extends Component {
       comment: this.state.comment
     };
 
-    fetch("http://localhost:3000/api/v1/ratings", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json"
-      },
-      body: JSON.stringify(rating)
-    })
-      .then(res => res.json())
-      .then(data => console.log(data));
+    this.props.createRating(rating);
   }
 
   render() {
@@ -67,3 +62,12 @@ export default class RatingsForm extends Component {
     );
   }
 }
+
+RatingsForm.propTypes = {
+  createRating: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { createRating }
+)(RatingsForm);

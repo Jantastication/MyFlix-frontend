@@ -1,4 +1,5 @@
-import { FETCH_RATINGS, NEW_RATING, TEST } from "../actions/types";
+import { FETCH_RATINGS, NEW_RATING } from "../actions/types";
+// import { FETCH_RATINGS, NEW_RATING, TEST } from "../actions/types";
 
 const initialState = {
   items: [],
@@ -14,6 +15,8 @@ export default function(state = initialState, action) {
     case FETCH_RATINGS:
       console.log("reducer");
       return { ...state, items: action.payload };
+    case NEW_RATING:
+      return { ...state, item: action.payload };
     default:
       return state;
   }

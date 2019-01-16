@@ -9,6 +9,12 @@ class Ratings extends Component {
     this.props.fetchRatings();
   }
 
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.newRating) {
+  //     this.props.ratings.unshift(nextProps.newRating);
+  //   }
+  // }
+
   render() {
     const ratingItems =
       [] ||
@@ -38,8 +44,10 @@ Ratings.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  ratings: state.ratings
-  // .items
+  ratings: state.ratings,
+  // .items,
+  newRating: state.ratings
+  // .item
 });
 
 // const mapDispatchToProps = dispatch => {

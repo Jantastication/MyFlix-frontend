@@ -4,11 +4,13 @@ import { Provider } from "react-redux";
 import store from "./store";
 // import { reducer } from "./state/reducer";
 // import { initialState } from "./store";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Provider store={store}>
+    <CssBaseline />
     <App />
   </Provider>,
   document.getElementById("root")

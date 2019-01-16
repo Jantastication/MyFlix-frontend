@@ -1,5 +1,3 @@
-import React from "react";
-import PropTypes from "prop-types";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,89 +9,88 @@ import InputLabel from "@material-ui/core/InputLabel";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import withStyles from "@material-ui/core/styles/withStyles";
 
-const styles = theme => ({
-  main: {
-    width: "auto",
-    display: "block", // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
-      marginLeft: "auto",
-      marginRight: "auto"
-    }
-  },
-  paper: {
-    marginTop: theme.spacing.unit * 8,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
-      .spacing.unit * 3}px`
-  },
-  avatar: {
-    margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing.unit
-  },
-  submit: {
-    marginTop: theme.spacing.unit * 3
-  }
-});
+import React, { Component } from "react";
+// import { login } from "../state/actions/actions";
+// import { connect } from "react-redux";
+// import history from "../state/history";
 
-function SignIn(props) {
-  const { classes } = props;
+export default class _Login extends Component {
+  state = {
+    email: "",
+    password: ""
+  };
 
-  return (
-    <main className={classes.main}>
-      <CssBaseline />
-      <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input
-              name="password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
+  handleOnChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  handleOnSubmit = e => {
+    e.preventDefault();
+    // this.props.login(this.state);
+    // history.push("/user-dash");
+  };
+
+  render() {
+    return (
+      <div align="center">
+        <CssBaseline />
+        <Paper style={{ padding: 40, margin: 100, maxWidth: 420 }} align="center">
+          <Avatar>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography align="center" component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <form onSubmit={e => this.handleOnSubmit(e)} >
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <Input
+                onChange={this.handleOnChange}
+                id="email"
+                name="email"
+                autoComplete="email"
+                autoFocus
+              />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Input
+                onChange={this.handleOnChange}
+                name="password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </FormControl>
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
             />
-          </FormControl>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+            <Button type="submit" fullWidth variant="contained" color="primary">
+              Login
+            </Button>
+          </form>
+          <br />
           <Button
-            type="submit"
+            // onClick={() => {
+            //   history.push("/signup");
+            // }}
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
           >
-            Sign in
+            Not a user? Sign Up
           </Button>
-        </form>
-      </Paper>
-    </main>
-  );
+        </Paper>
+      </div>
+    );
+  }
 }
 
-SignIn.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(SignIn);
+// export const Login = connect(
+//   null,
+//   { login }
+// )(_Login);

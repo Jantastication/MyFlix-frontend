@@ -17,3 +17,21 @@ export const fetchRatings = () => dispatch => {
       })
     );
 };
+
+export const createRating = ratingData => dispatch => {
+  console.log("action called");
+  fetch("http://localhost:3000/api/v1/ratings", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify(ratingData)
+  })
+    .then(res => res.json())
+    .then(rating =>
+      dispatch({
+        type: NEW_RATING,
+        payload: rating
+      })
+    );
+};
