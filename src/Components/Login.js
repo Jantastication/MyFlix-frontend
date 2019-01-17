@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -10,12 +11,11 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
-import React, { Component } from "react";
-// import { login } from "../state/actions/actions";
-// import { connect } from "react-redux";
-// import history from "../state/history";
+import { login } from "../actions/usersActions";
+import { connect } from "react-redux";
+import history from "../history";
 
-export default class _Login extends Component {
+class Login extends Component {
   state = {
     email: "",
     password: ""
@@ -29,22 +29,25 @@ export default class _Login extends Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    // this.props.login(this.state);
-    // history.push("/user-dash");
+    this.props.login(this.state);
+    history.push("/Homepage");
   };
 
   render() {
     return (
       <div align="center">
         <CssBaseline />
-        <Paper style={{ padding: 40, margin: 100, maxWidth: 420 }} align="center">
+        <Paper
+          style={{ padding: 40, margin: 100, maxWidth: 420 }}
+          align="center"
+        >
           <Avatar>
             <LockOutlinedIcon />
           </Avatar>
           <Typography align="center" component="h1" variant="h5">
             Sign in
           </Typography>
-          <form onSubmit={e => this.handleOnSubmit(e)} >
+          <form onSubmit={e => this.handleOnSubmit(e)}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
               <Input
@@ -75,9 +78,9 @@ export default class _Login extends Component {
           </form>
           <br />
           <Button
-            // onClick={() => {
-            //   history.push("/signup");
-            // }}
+            onClick={() => {
+              history.push("/signup");
+            }}
             fullWidth
             variant="contained"
             color="primary"
@@ -90,7 +93,7 @@ export default class _Login extends Component {
   }
 }
 
-// export const Login = connect(
-//   null,
-//   { login }
-// )(_Login);
+export default connect(
+  null,
+  { login }
+)(Login);

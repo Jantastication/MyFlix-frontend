@@ -16,7 +16,9 @@ export default function(state = initialState, action) {
       console.log("reducer");
       return { ...state, items: action.payload };
     case NEW_RATING:
-      return { ...state, item: action.payload };
+      let newState = { ...state, items: [...state.items, action.payload] };
+      console.log(newState);
+      return newState;
     default:
       return state;
   }

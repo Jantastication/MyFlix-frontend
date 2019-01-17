@@ -7,6 +7,9 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import history from "../history";
+import { connect } from "react-redux";
+import { logout } from "../actions/usersActions";
 
 const styles = {
   root: {
@@ -35,9 +38,59 @@ function ButtonAppBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            Flixbot
+            FLIXBOT
+            <Button
+              onClick={() => {
+                history.push("/homepage");
+              }}
+              color="inherit"
+            >
+              FLIXBOT
+            </Button>
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button
+            onClick={() => {
+              history.push("/profile");
+            }}
+            color="inherit"
+          >
+            My Profile
+          </Button>
+          <Button
+            onClick={() => {
+              history.push("/Movies");
+            }}
+            color="inherit"
+          >
+            Movies
+          </Button>
+          <Button
+            onClick={() => {
+              history.push("/login");
+            }}
+            color="inherit"
+          >
+            Login
+          </Button>
+
+          <Button
+            onClick={() => {
+              props.logout();
+              history.push("/");
+            }}
+            color="inherit"
+          >
+            Logout
+          </Button>
+
+          <Button
+            onClick={() => {
+              history.push("/signup");
+            }}
+            color="inherit"
+          >
+            Sign Up
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
@@ -48,4 +101,7 @@ ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ButtonAppBar);
+export default connect(
+  null,
+  { logout }
+)(withStyles(styles)(ButtonAppBar));

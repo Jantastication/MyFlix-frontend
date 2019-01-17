@@ -36,7 +36,7 @@ class App extends Component {
                 <Route exact path="/Signup" component={Signup} />
                 <Route exact path="/homepage" component={Homepage} />
                 <Route exact path="/Ratings" component={Ratings} />
-                <Route exact path="/Ratings Form" component={RatingsForm} />
+                <Route exact path="/RatingsForm" component={RatingsForm} />
                 <Route exact path="/AllMovies" component={MovieContainer} />
                 <Route exact path="/Profile" component={UserProfile} />
                 <Route exact path="/Movies" component={Movies} />
@@ -51,4 +51,3 @@ class App extends Component {
 }
 
 export default App;
-
