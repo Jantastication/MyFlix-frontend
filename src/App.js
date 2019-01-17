@@ -30,16 +30,17 @@ class App extends Component {
         <Router history={history}>
           <MuiThemeProvider theme={theme}>
             <div>
-              <AppBar />
+              <AppBar classes={[]} />
               <Switch>
-                <Route exact path="/Login" component={Login} />
-                <Route exact path="/Signup" component={Signup} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={Signup} />
                 <Route exact path="/homepage" component={Homepage} />
-                <Route exact path="/Ratings" component={Ratings} />
-                <Route exact path="/RatingsForm" component={RatingsForm} />
-                <Route exact path="/AllMovies" component={MovieContainer} />
-                <Route exact path="/Profile" component={UserProfile} />
-                <Route exact path="/Movies" component={Movies} />
+                <Route exact path="/ratings" component={Ratings} />
+                <Route exact path="/ratingsForm" component={RatingsForm} />
+                <Route exact path="/movies" component={MovieContainer} />
+                <Route exact path="/profile" component={UserProfile} />
+                <Route exact path="/movies" component={Movies} />
                 <Route path="/" render={() => <Redirect to="/homepage" />} />
               </Switch>
             </div>

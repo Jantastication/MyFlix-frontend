@@ -1,9 +1,4 @@
-// import { TEST } from "./types";
 import { FETCH_RATINGS, NEW_RATING } from "./types";
-
-// export const test = function() {
-//   return { type: TEST };
-// };
 
 export const fetchRatings = () => dispatch => {
   console.log("fetching");

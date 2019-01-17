@@ -25,6 +25,8 @@ export const login = user => {
 };
 
 export const logout = () => {
+  console.log("logout action");
+
   return { type: LOGOUT };
 };
 
