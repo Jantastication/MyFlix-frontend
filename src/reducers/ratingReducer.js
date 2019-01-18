@@ -1,23 +1,55 @@
-import { FETCH_RATINGS, NEW_RATING } from "../actions/types";
-// import { FETCH_RATINGS, NEW_RATING, TEST } from "../actions/types";
+import {
+  FETCH_RATINGS,
+  NEW_RATING,
+  LOGIN,
+  SIGNUP,
+  LOGOUT
+} from "../actions/types";
+import { SEARCH_MOVIES } from "../actions/types";
+import history from "../history";
 
 const initialState = {
   items: [],
-  item: {}
+  item: {},
+  movies: {},
+  currentUser: ""
 };
 
-export default function(state = initialState, action) {
+const reducer = (state = initialState, action) => {
   // debugger;
   switch (action.type) {
-    // case TEST:
-    //   debugger;
-    // return { ...state, test: true };
+    case SEARCH_MOVIES:
+      console.log("in reducer", action.payload);
+      state = { ...state, movies: action.payload };
+      // state = {
+      //   items: state.items,
+      //   item: state.item,
+      //   movies: action.payload,
+      //   currentUser: state.currentUser
+      // };
+      break;
     case FETCH_RATINGS:
       console.log("reducer");
-      return { ...state, items: action.payload };
+      state = { ...state, items: action.payload };
+      break;
     case NEW_RATING:
-      return { ...state, item: action.payload };
-    default:
-      return state;
+      state = { ...state, items: [...state.items, action.payload] };
+      break;
+    case LOGIN:
+      state.currentUser = action.payload;
+      history.push("/homepage");
+      break;
+    case SIGNUP:
+      state.currentUser = action.payload;
+      history.push("/homepage");
+      break;
+    case LOGOUT:
+      console.log("out");
+      localStorage.clear();
+      history.push("/login");
+      break;
   }
-}
+  return state;
+};
+
+export default reducer;

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import RatingsForm from "./RatingsForm";
+
 // import { test } from "../actions/actionCreators";
 import { fetchRatings } from "../actions/actionCreators";
 
 class Ratings extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchRatings();
   }
 
@@ -29,6 +31,7 @@ class Ratings extends Component {
       <div>
         <h1>Ratings</h1>
         {ratingItems}
+        <RatingsForm />
         {/* <button onClick={this.props.makeTestFalse}>
           Test is {this.props.test}
         </button> */}
@@ -50,6 +53,11 @@ const mapStateToProps = state => ({
   // .item
 });
 
+export default connect(
+  mapStateToProps,
+  { fetchRatings }
+)(Ratings);
+
 // const mapDispatchToProps = dispatch => {
 //   return {
 //     makeTestFalse: () => dispatch(test())
@@ -61,11 +69,6 @@ const mapStateToProps = state => ({
 //     test: state.test
 //   };
 // };
-
-export default connect(
-  mapStateToProps,
-  { fetchRatings }
-)(Ratings);
 
 // export default connect(
 //   mapStateToProps,

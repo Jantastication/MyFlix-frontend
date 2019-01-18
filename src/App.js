@@ -9,8 +9,9 @@ import Signup from "./Components/Signup";
 import Login from "./Components/Login";
 import Homepage from "./Components/Homepage";
 import UserProfile from "./Components/UserProfile";
+// import MovieCard from "./Components/MovieCard";
+// import MovieForm from "./Components/MovieForm";
 import MovieContainer from "./Components/MovieContainer";
-import Movies from "./Components/Movies";
 
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
@@ -30,16 +31,19 @@ class App extends Component {
         <Router history={history}>
           <MuiThemeProvider theme={theme}>
             <div>
-              <AppBar />
+              <AppBar classes={[]} />
               <Switch>
-                <Route exact path="/Login" component={Login} />
-                <Route exact path="/Signup" component={Signup} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={Signup} />
                 <Route exact path="/homepage" component={Homepage} />
-                <Route exact path="/Ratings" component={Ratings} />
-                <Route exact path="/Ratings Form" component={RatingsForm} />
-                <Route exact path="/AllMovies" component={MovieContainer} />
-                <Route exact path="/Profile" component={UserProfile} />
-                <Route exact path="/Movies" component={Movies} />
+                <Route exact path="/ratings" component={Ratings} />
+                <Route exact path="/ratingsForm" component={RatingsForm} />
+                {/* <Route exact path="/movieForm" component={MovieForm} />
+                <Route exact path="/movieCard" component={MovieCard} /> */}
+                <Route exact path="/movies" component={MovieContainer} />
+                <Route exact path="/profile" component={UserProfile} />
+
                 <Route path="/" render={() => <Redirect to="/homepage" />} />
               </Switch>
             </div>
@@ -51,4 +55,3 @@ class App extends Component {
 }
 
 export default App;
-
