@@ -8,8 +8,8 @@ export default class MovieCollection extends Component {
         <h1>You are now Flix World </h1>
 
         <br />
-        <p>{this.props.movie.Title}</p>
-        <img src={this.props.movie.Poster} />
+        {/* <p>{this.props.movie.Title}</p>
+        <img src={this.props.movie.Poster} alt="" /> */}
         {/* <p>{movie.title}</p>
         <img src={movie.poster} width="200" /> */}
         {/* {this.props.movies.map(movie => {

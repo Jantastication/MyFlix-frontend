@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import React, { Component } from "react";
 import { signup } from "../actions/usersActions";
 import { connect } from "react-redux";
-import history from "../history";
+// import history from "../history";
 
 class Signup extends Component {
   state = {

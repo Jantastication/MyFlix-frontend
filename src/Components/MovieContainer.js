@@ -1,38 +1,48 @@
 import React, { Component } from "react";
-import Movies from "./Movies";
-const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+// import MovieCollection from "./MovieCollection";
+import { Grid, Row, Col } from "react-bootstrap";
+import SearchField from "./SearchField";
+// const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+// const TMBD_KEY = `${process.env.REACT_APP_TMDB_API_KEY}`;
 
 export default class MovieContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      movies: {},
-      input: ""
-    };
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     movies: {},
+  //     input: ""
+  //   };
+  // }
 
-  fetchData() {
-    fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}`)
-      .then(resp => resp.json())
-      .then(movies => {
-        console.log(movies);
-        this.setState({ movies: movies });
-      });
-  }
+  // fetchData() {
+  //   fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}`)
+  //     .then(resp => resp.json())
+  //     .then(movies => {
+  //       console.log(movies);
+  //       this.setState({ movies: movies });
+  //     });
+  // }
 
-  componentDidMount() {
-    console.log("hi");
-    this.fetchData();
-  }
+  // componentDidMount() {
+  //   console.log("hi");
+  //   this.fetchData();
+  // }
 
   render() {
     console.log("movies");
     return (
       <div>
-        <h1>MovieContainer</h1>
-        <h6>ask Lara-bot about a movie you would like info on </h6>
-        <br />
-        <Movies movie={this.state.movies} />
+        <h4>MovieContainer</h4>
+        <Grid>
+          <Row>
+            <SearchField onChange={event => console.log(event.target.value)} />
+          </Row>
+          <Row>
+            <p>Movie list will go here</p>
+          </Row>
+        </Grid>
+
+        {/* <MovieCollection movie={this.state.movies} /> */}
       </div>
     );
   }
