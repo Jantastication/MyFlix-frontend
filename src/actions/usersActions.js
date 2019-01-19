@@ -1,4 +1,5 @@
-import { LOGIN, LOGOUT, SIGNUP, SEARCH_MOVIES } from "./types";
+import { LOGIN, LOGOUT, SIGNUP, SET_MOVIES, GET_DETAILS } from "./types";
+import { func } from "prop-types";
 const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
 export const login = user => {
@@ -52,16 +53,57 @@ export const signup = user => {
 
 export const searchMovies = query => {
   console.log("searching");
-  return dispatch => {
+  return function(dispatch) {
     fetch(`http://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`)
       .then(res => res.json())
       .then(movies => {
-        console.log("getting movie back", movies);
+        console.log("getting movie back", movies.Search);
 
         dispatch({
-          type: SEARCH_MOVIES,
-          payload: movies
+          type: SET_MOVIES,
+          payload: movies.Search
         });
       });
   };
 };
+
+export const getDetails = imdbID => {
+  console.log("go get deets");
+  return function(dispatch) {
+    fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`)
+      .then(res => res.json())
+      .then(details => {
+        console.log(details);
+        return function(dispatch) {
+          dispatch({
+            type: GET_DETAILS,
+            payload: details
+          });
+        };
+      });
+  };
+};
+
+// export const getDetails = imdbID => {
+//   console.log(imdbID);
+//   // return function(dispatch) {
+//   fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`)
+//     .then(res => res.json())
+//     .then(details => {
+//       console.log(details);
+//       return function(dispatch) {
+//         console.log("dispatching");
+//         dispatch({
+//           type: GET_DETAILS,
+//           payload: details
+//         });
+//       };
+//     });
+// };
+//   dispatch({
+//     type: GET_DETAILS,
+//     payload: details
+//   });
+// });
+// };/
+// };
