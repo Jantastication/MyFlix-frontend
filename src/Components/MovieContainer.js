@@ -1,52 +1,46 @@
 import React, { Component } from "react";
-// import MovieCollection from "./MovieCollection";
+import MovieCollection from "./MovieCollection";
 import { Grid, Row, Col } from "react-bootstrap";
 import SearchField from "./SearchField";
+import { connect } from "react-redux";
+import { searchMovies } from "../actions/usersActions.js";
+// import { getDetails } from "../actions/usersActions.js";
 // const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 // const TMBD_KEY = `${process.env.REACT_APP_TMDB_API_KEY}`;
 
-export default class MovieContainer extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     movies: {},
-  //     input: ""
-  //   };
-  // }
-
-  // fetchData() {
-  //   fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}`)
-  //     .then(resp => resp.json())
-  //     .then(movies => {
-  //       console.log(movies);
-  //       this.setState({ movies: movies });
-  //     });
-  // }
-
-  // componentDidMount() {
-  //   console.log("hi");
-  //   this.fetchData();
-  // }
-
+class MovieContainer extends Component {
   render() {
     console.log("movies");
+    console.log("OVER HERE", this.props.movies);
     return (
       <div>
-        <h4>MovieContainer</h4>
+        <h4>You are now FlixWorld</h4>
         <Grid>
           <Row>
-            <SearchField onChange={event => console.log(event.target.value)} />
+            <SearchField
+              handleChange={event => console.log(event.target.value)}
+              showNoResults={false}
+            />
           </Row>
+          <Row>....</Row>
           <Row>
-            <p>Movie list will go here</p>
+            <p>Movie list will go here: </p>
+            <MovieCollection movies={this.props.movies} />
           </Row>
         </Grid>
-
-        {/* <MovieCollection movie={this.state.movies} /> */}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  movies: state.movies
+});
+
+export default connect(
+  mapStateToProps,
+  { searchMovies }
+)(MovieContainer);
 
 // class PokemonPage extends React.Component {
 //     constructor() {
