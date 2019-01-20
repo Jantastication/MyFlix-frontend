@@ -74,12 +74,10 @@ export const getDetails = imdbID => {
       .then(res => res.json())
       .then(details => {
         console.log(details);
-        return function(dispatch) {
-          dispatch({
-            type: GET_DETAILS,
-            payload: details
-          });
-        };
+        dispatch({
+          type: GET_DETAILS,
+          payload: details
+        });
       });
   };
 };

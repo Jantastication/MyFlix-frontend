@@ -26,8 +26,8 @@ const reducer = function(currentState, action) {
       console.log("newState.movies in reducer", newState.movies);
       break;
     case GET_DETAILS:
-      console.log("details reducer");
       newState.details = action.payload;
+      console.log(newState);
       break;
     case FETCH_RATINGS:
       console.log("fetch ratings reducer");

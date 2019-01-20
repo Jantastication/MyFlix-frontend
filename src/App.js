@@ -14,6 +14,7 @@ import UserProfile from "./Components/UserProfile";
 import MovieContainer from "./Components/MovieContainer";
 
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import MovieDetails from "./Components/MovieDetails";
 
 const theme = createMuiTheme({
   palette: {
@@ -39,8 +40,8 @@ class App extends Component {
                 <Route exact path="/homepage" component={Homepage} />
                 <Route exact path="/ratings" component={Ratings} />
                 <Route exact path="/ratingsForm" component={RatingsForm} />
-                {/* <Route exact path="/movieForm" component={MovieForm} />
-                <Route exact path="/movieCard" component={MovieCard} /> */}
+                {/* <Route exact path="/movieForm" component={MovieForm} /> */}
+                <Route exact path="/movie/:id" component={MovieDetails} />
                 <Route exact path="/movies" component={MovieContainer} />
                 <Route exact path="/profile" component={UserProfile} />
 

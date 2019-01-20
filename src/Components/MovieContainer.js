@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import MovieCollection from "./MovieCollection";
+import MovieDetails from "./MovieDetails";
 import { Grid, Row, Col } from "react-bootstrap";
 import SearchField from "./SearchField";
 import { connect } from "react-redux";
 import { searchMovies } from "../actions/usersActions.js";
-// import { getDetails } from "../actions/usersActions.js";
+
+import { getDetails } from "../actions/usersActions.js";
 // const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 // const TMBD_KEY = `${process.env.REACT_APP_TMDB_API_KEY}`;
 
@@ -28,6 +30,7 @@ class MovieContainer extends Component {
             <MovieCollection movies={this.props.movies} />
           </Row>
         </Grid>
+        <MovieDetails />
       </div>
     );
   }
