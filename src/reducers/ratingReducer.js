@@ -18,7 +18,7 @@ const initialState = {
   myMovies: []
 };
 
-const reducer = function(currentState, action) {
+const reducer = function(currentState = initialState, action) {
   const newState = { ...currentState };
 
   switch (action.type) {
