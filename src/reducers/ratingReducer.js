@@ -7,13 +7,15 @@ import {
 } from "../actions/types";
 import { SET_MOVIES } from "../actions/types";
 import { GET_DETAILS } from "../actions/types";
+import { ADD_MOVIE } from "../actions/types";
 import history from "../history";
 
 const initialState = {
   items: [],
   item: {},
   movies: [],
-  currentUser: ""
+  currentUser: "",
+  myMovies: []
 };
 
 const reducer = function(currentState, action) {
@@ -28,6 +30,12 @@ const reducer = function(currentState, action) {
     case GET_DETAILS:
       newState.details = action.payload;
       console.log(newState);
+      break;
+    case ADD_MOVIE:
+      console.log("is this a movie ratings instance", action.payload);
+      // newState = { ...newState, movie: [...newState.movies, action.payload] };
+      newState.myMovies = [...newState.myMovies, action.payload];
+      console.log(newState, "add to list reducer");
       break;
     case FETCH_RATINGS:
       console.log("fetch ratings reducer");

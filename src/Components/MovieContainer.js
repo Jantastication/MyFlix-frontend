@@ -16,7 +16,11 @@ class MovieContainer extends Component {
     console.log("OVER HERE", this.props.movies);
     return (
       <div>
-        <h4>You are now FlixWorld</h4>
+        <br />
+        <h1>
+          <b>Welcome To FlixWorld</b>
+        </h1>
+        <br />
         <Grid>
           <Row>
             <SearchField
@@ -26,11 +30,13 @@ class MovieContainer extends Component {
           </Row>
           <Row>....</Row>
           <Row>
-            <p>Movie list will go here: </p>
+            <br />
+            <h5>
+              <b>Tap on the movie for Details: </b>
+            </h5>
             <MovieCollection movies={this.props.movies} />
           </Row>
         </Grid>
-        <MovieDetails />
       </div>
     );
   }
@@ -44,53 +50,3 @@ export default connect(
   mapStateToProps,
   { searchMovies }
 )(MovieContainer);
-
-// class PokemonPage extends React.Component {
-//     constructor() {
-//       super();
-//       this.state = {
-//         pokemon: [],
-//         input: ""
-//       };
-//     }
-
-//     componentDidMount() {
-//       fetch("http://localhost:3000/pokemon")
-//         .then(resp => resp.json())
-//         .then(pokemon => {
-//           this.setState({ pokemon: pokemon });
-//         });
-//     }
-
-// addPokemon = poke => {
-//   this.setState(state => {
-//     state.pokemon.push(poke);
-//     return state;
-//   });
-// };
-
-// search = _.debounce(input => {
-//   this.setState(state => {
-//     state.input = input;
-//     return state;
-//   }),
-//     500;
-// });
-
-// render() {
-//   // console.log(pokemon)
-//   return (
-//     <div>
-//       <h1>Pokemon Searcher</h1>
-//       <br />
-//       <Search
-//         onSearchChange={e => this.search(e.target.value)}
-//         showNoResults={false}
-//       />
-//       <br />
-//       <PokemonCollection pokemon={this.state.pokemon} />
-//       <br />
-//       <PokemonForm addPokemon={this.addPokemon} />
-//     </div>
-//   );
-// }

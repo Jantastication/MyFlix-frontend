@@ -1,4 +1,5 @@
 import { LOGIN, LOGOUT, SIGNUP, SET_MOVIES, GET_DETAILS } from "./types";
+import { ADD_MOVIE } from "./types";
 import { func } from "prop-types";
 const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
@@ -82,26 +83,27 @@ export const getDetails = imdbID => {
   };
 };
 
-// export const getDetails = imdbID => {
-//   console.log(imdbID);
-//   // return function(dispatch) {
-//   fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`)
-//     .then(res => res.json())
-//     .then(details => {
-//       console.log(details);
-//       return function(dispatch) {
-//         console.log("dispatching");
-//         dispatch({
-//           type: GET_DETAILS,
-//           payload: details
-//         });
-//       };
-//     });
-// };
-//   dispatch({
-//     type: GET_DETAILS,
-//     payload: details
-//   });
-// });
-// };/
-// };
+export const addMovie = (MovieID, UserID) => {
+  console.log("go to watch list", MovieID, UserID);
+  return function(dispatch) {
+    fetch("http://localhost:3000/api/v1/ratings/", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        imdbID: MovieID,
+        user_id: UserID
+      })
+    })
+      .then(res => res.json())
+      .then(movie => {
+        console.log(movie);
+        dispatch({
+          type: ADD_MOVIE,
+          payload: movie
+        });
+      });
+  };
+};
