@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createRating } from "../actions/actionCreators";
+import { createRating } from "../actions/usersActions";
+
 import PropTypes from "prop-types";
 
 class RatingsForm extends Component {

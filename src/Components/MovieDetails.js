@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Grid } from "react-bootstrap";
 // import { getDetails } from "../actions/usersActions.js";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -92,10 +92,19 @@ class MovieDetails extends Component {
                 onClick={() =>
                   this.props.addMovie(
                     this.props.movie.imdbID,
-                    this.props.currentUser.user_id
+                    this.props.currentUser.user.id,
+                    this.props.movie.Title,
+                    this.props.movie.Poster
                   )
                 }
               >
+                {/* You would do conditional rendering here to display correct buttons */}
+                {/* example:
+                    this.props.movie.rating.score !== null ?
+                    true buttons
+                    :
+                    false buttons
+                */}
                 <b>Add To My Watchlist</b>
               </Button>
             </CardActions>

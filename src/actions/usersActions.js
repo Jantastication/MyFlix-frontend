@@ -1,6 +1,7 @@
 import { LOGIN, LOGOUT, SIGNUP, SET_MOVIES, GET_DETAILS } from "./types";
-import { ADD_MOVIE } from "./types";
-import { func } from "prop-types";
+import { FETCH_RATINGS, NEW_RATING } from "./types";
+import { ADD_MOVIE, GET_MYMOVIES } from "./types";
+// import { func } from "prop-types";
 const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
 export const login = user => {
@@ -99,11 +100,68 @@ export const addMovie = (MovieID, UserID) => {
     })
       .then(res => res.json())
       .then(movie => {
-        console.log(movie);
+        console.log("movie added", movie);
         dispatch({
           type: ADD_MOVIE,
           payload: movie
         });
       });
   };
+};
+
+export const deleteMyMovie = movieId => {
+  console.log("delete the beech", movieId);
+  fetch(`http://localhost:3000/api/v1/myMovies/${movieId}`, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json"
+    }
+  });
+  //delete the rating,
+  //that will remove from your list
+};
+
+export const getMyMovies = userId => dispatch => {
+  fetch(`http://localhost:3000/api/v1/myMovies/${userId}`)
+    .then(res => res.json())
+    .then(
+      user => console.log(user)
+      // dispatch({
+      //   type: GET_MYMOVIES,
+      //   payload: movies
+      // })
+    );
+  //get the movies on my watchlist
+  // fetch("localhost:3000/myMovies")
+};
+
+export const fetchRatings = () => dispatch => {
+  console.log("fetching");
+
+  fetch("http://localhost:3000/api/v1/ratings")
+    .then(res => res.json())
+    .then(ratings =>
+      dispatch({
+        type: FETCH_RATINGS,
+        payload: ratings
+      })
+    );
+};
+
+export const createRating = ratingData => dispatch => {
+  console.log("action called");
+  fetch("http://localhost:3000/api/v1/ratings", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify(ratingData)
+  })
+    .then(res => res.json())
+    .then(rating =>
+      dispatch({
+        type: NEW_RATING,
+        payload: rating
+      })
+    );
 };

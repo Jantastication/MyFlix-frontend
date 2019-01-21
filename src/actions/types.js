@@ -7,3 +7,5 @@ export const SIGNUP = "SIGNUP";
 export const SET_MOVIES = "SET_MOVIES";
 export const GET_DETAILS = "GET_DETAILS";
 export const ADD_MOVIE = "ADD_MOVIE";
+export const GET_MYMOVIES = "GET_MYMOVIES";
+export const DELETE_MYMOVIE = "DELETE_MYMOVIE";

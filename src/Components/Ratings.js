@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import RatingsForm from "./RatingsForm";
 
 // import { test } from "../actions/actionCreators";
-import { fetchRatings } from "../actions/actionCreators";
+import { fetchRatings } from "../actions/usersActions";
 
 class Ratings extends Component {
   componentDidMount() {
