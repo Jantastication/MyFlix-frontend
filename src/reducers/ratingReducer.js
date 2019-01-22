@@ -16,12 +16,13 @@ const initialState = {
   items: [],
   item: {},
   movies: [],
-  currentUser: "",
-  myMovies: []
+  currentUser: {},
+  myMovies: [],
+  details: {}
 };
 
 const reducer = function(currentState = initialState, action) {
-  const newState = { ...currentState };
+  let newState = { ...currentState };
 
   switch (action.type) {
     case SET_MOVIES:
@@ -34,9 +35,10 @@ const reducer = function(currentState = initialState, action) {
       console.log(newState);
       break;
     case ADD_MOVIE:
-      console.log("is this a movie ratings instance", action.payload);
+      debugger;
+      // console.log("is this a movie ratings instance", action.payload);
       // newState = { ...newState, movie: [...newState.movies, action.payload] };
-      newState.myMovies = [...newState.myMoviies, action.payload];
+      newState.myMovies = [...newState.myMovies, action.payload];
       console.log(newState, "add to list reducer");
       break;
     case GET_MYMOVIES:
@@ -45,11 +47,11 @@ const reducer = function(currentState = initialState, action) {
       break;
     case DELETE_MYMOVIE:
       const movieId = action.payload;
-      newState = currentState.myMovies.filter(movie => movie.id !== movieId);
-
+      newState = newState.myMovies.filter(movie => movie.id !== movieId);
+      break;
     case FETCH_RATINGS:
       console.log("fetch ratings reducer");
-      newState = { ...newState, items: action.payload };
+      newState.ratings = { ...newState, items: action.payload };
       break;
     case NEW_RATING:
       newState = { ...newState, items: [...newState.items, action.payload] };
@@ -65,6 +67,8 @@ const reducer = function(currentState = initialState, action) {
     case LOGOUT:
       console.log("out");
       localStorage.clear();
+      newState.currentUser = {};
+
       history.push("/login");
       break;
   }

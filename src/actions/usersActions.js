@@ -6,7 +6,6 @@ const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
 export const login = user => {
   return function(dispatch) {
-    console.log("we are in", user);
     fetch("http://localhost:3000/api/v1/auth/", {
       method: "POST",
       headers: {
@@ -27,7 +26,12 @@ export const login = user => {
       });
   };
 };
-
+export const putUserIntoReduxState = user => {
+  return {
+    type: LOGIN,
+    payload: user
+  };
+};
 export const logout = () => {
   console.log("logout action");
 
@@ -84,7 +88,7 @@ export const getDetails = imdbID => {
   };
 };
 
-export const addMovie = (MovieID, UserID) => {
+export const addMovie = (MovieID, UserID, title, poster) => {
   console.log("go to watch list", MovieID, UserID);
   return function(dispatch) {
     fetch("http://localhost:3000/api/v1/ratings/", {
@@ -95,7 +99,9 @@ export const addMovie = (MovieID, UserID) => {
       },
       body: JSON.stringify({
         imdbID: MovieID,
-        user_id: UserID
+        user_id: UserID,
+        title: title,
+        poster: poster
       })
     })
       .then(res => res.json())
@@ -109,6 +115,22 @@ export const addMovie = (MovieID, UserID) => {
   };
 };
 
+export const getMyMovies = userId => {
+  console.log("going to get my movies", userId);
+  return function(dispatch) {
+    fetch(`http://localhost:3000/api/v1/myMovies/${userId}`)
+      .then(res => res.json())
+      .then(user => {
+        dispatch({
+          type: GET_MYMOVIES,
+          payload: user
+        });
+      });
+    //get the movies on my watchlist
+    // fetch("localhost:3000/myMovies")
+  };
+};
+
 export const deleteMyMovie = movieId => {
   console.log("delete the beech", movieId);
   fetch(`http://localhost:3000/api/v1/myMovies/${movieId}`, {
@@ -118,21 +140,7 @@ export const deleteMyMovie = movieId => {
     }
   });
   //delete the rating,
-  //that will remove from your list
-};
-
-export const getMyMovies = userId => dispatch => {
-  fetch(`http://localhost:3000/api/v1/myMovies/${userId}`)
-    .then(res => res.json())
-    .then(
-      user => console.log(user)
-      // dispatch({
-      //   type: GET_MYMOVIES,
-      //   payload: movies
-      // })
-    );
-  //get the movies on my watchlist
-  // fetch("localhost:3000/myMovies")
+  //that will remove from my list
 };
 
 export const fetchRatings = () => dispatch => {

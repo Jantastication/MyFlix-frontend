@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import RatingsForm from "./RatingsForm";
+import { Rating } from "material-ui-rating";
 
 // import { test } from "../actions/actionCreators";
 import { fetchRatings } from "../actions/usersActions";
@@ -32,9 +33,12 @@ class Ratings extends Component {
         <h1>Ratings</h1>
         {ratingItems}
         <RatingsForm />
-        {/* <button onClick={this.props.makeTestFalse}>
-          Test is {this.props.test}
-        </button> */}
+        {/* <Rating
+          onRate={() => console.log("onRate")}
+          value={3}
+          max={5}
+          onChange={() => console.log("onChange")}
+        /> */}
       </div>
     );
   }

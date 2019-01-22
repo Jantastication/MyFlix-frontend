@@ -1,27 +1,52 @@
 import React, { Component } from "react";
-import GridList from "@material-ui/core/GridList";
+// import GridList from "@material-ui/core/GridList";
 import { Row, Col, Grid } from "react-bootstrap";
 import { withStyles } from "@material-ui/core/styles";
 import MovieCollection from "./MovieCollection";
-// import { withStyles } from "@material-ui/core/styles";
+import { getMyMovies } from "../actions/usersActions";
+import { connect } from "react-redux";
+import MyMovies from "./MyMovies";
 
-// import GridListTile from "@material-ui/core/GridListTile";
-// import GridListTileBar from "@material-ui/core/GridListTileBar";
-// import IconButton from "@material-ui/core/IconButton";
-// import StarBorderIcon from "@material-ui/icons/StarBorder";
-// import tileData from "./tileData";
+const styles = {
+  movieColumn: {
+    marginBottom: 20
+  }
+};
 
-export default class UserProfile extends Component {
-  componentWillMount() {
+class UserProfile extends Component {
+  componentDidMount() {
+    this.props.getMyMovies();
     // Fetch those movies!!
     // in the actionCreator THAT YOU CREATE
     // fetch("localhost:3000/myMovies")
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.myMovie) {
+  //     this.props.myMovies.unshift(nextProps.myMovie);
+  //   }
+  // }
+
   render() {
+    // const myMovies =
+    //   // [] ||
+    //   this.props.myMovies.map(myMovie => {}(
+    //     <div key={myMovie.id}>
+    //       <h3>{myMovie.Title}</h3>
+    //       <p>{myMovie.Poster}</p>
+    //     </div>
+    //   ));
     return (
       <div>
+        <br />
+        <br />
+        <br />
         <Grid>
-          <b>My WatchList</b>
+          <br />
+          <br />
+          <h4>
+            <b>My WatchList</b>
+          </h4>
           <Row>
             {/* Customize this searchField to be a filter */}
             {/* <SearchField
@@ -55,3 +80,18 @@ export default class UserProfile extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  myMovies: state.myMovies,
+  currentUser: state.currentUser
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getMyMovies: userId => dispatch(getMyMovies(userId))
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(UserProfile));

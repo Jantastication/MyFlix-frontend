@@ -12,6 +12,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { addMovie } from "../actions/usersActions";
+// import { getMyMovies } from "../actions/usersActions";
 
 const styles = {
   card: {
@@ -98,7 +99,7 @@ class MovieDetails extends Component {
                   )
                 }
               >
-                {/* You would do conditional rendering here to display correct buttons */}
+                {/* do conditional rendering here to display correct buttons */}
                 {/* example:
                     this.props.movie.rating.score !== null ?
                     true buttons
@@ -115,10 +116,13 @@ class MovieDetails extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  movie: state.details,
-  currentUser: state.currentUser
-});
+const mapStateToProps = state => {
+  return {
+    movie: state.details,
+    currentUser: state.currentUser,
+    myMovies: state.myMovies
+  };
+};
 // map action addItem here
 export default connect(
   mapStateToProps,
