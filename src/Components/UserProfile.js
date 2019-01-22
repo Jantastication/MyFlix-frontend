@@ -10,26 +10,23 @@ import MyMovies from "./MyMovies";
 const styles = {
   movieColumn: {
     marginBottom: 20
+  },
+  movieContainer: {
+    margin: 200
   }
 };
 
 class UserProfile extends Component {
-  componentDidMount() {
-    this.props.getMyMovies();
+  componentWillMount() {
+    this.props.getMyMovies(this.props.currentUser.id);
     // Fetch those movies!!
     // in the actionCreator THAT YOU CREATE
     // fetch("localhost:3000/myMovies")
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.myMovie) {
-  //     this.props.myMovies.unshift(nextProps.myMovie);
-  //   }
-  // }
-
   render() {
     // const myMovies =
-    //   // [] ||
+    //   // [] |
     //   this.props.myMovies.map(myMovie => {}(
     //     <div key={myMovie.id}>
     //       <h3>{myMovie.Title}</h3>
@@ -37,46 +34,17 @@ class UserProfile extends Component {
     //     </div>
     //   ));
     return (
-      <div>
-        <br />
-        <br />
-        <br />
-        <Grid>
+      <Grid style={styles.movieContainer}>
+        <Row>....</Row>
+        <Row>
           <br />
           <br />
-          <h4>
-            <b>My WatchList</b>
-          </h4>
-          <Row>
-            {/* Customize this searchField to be a filter */}
-            {/* <SearchField
-              handleChange={event => console.log(event.target.value)}
-              showNoResults={false} */}
-          </Row>
-          <Row>
-            {/* Render the container/list right here */}
-            <Row>
-              <br />
-
-              <MovieCollection movies={this.props.movies} />
-            </Row>
-          </Row>
-
-          <b> My Watched and Rated Movies </b>
-          <Row>
-            {/* Customize this searchField to be a filter */}
-            {/* <SearchField
-              handleChange={event => console.log(event.target.value)}
-              showNoResults={false}
-            /> */}
-          </Row>
-          <Row>
-            <br />
-            <h5>{/* <b>Tap on the movie for Details: </b> */}</h5>
-            <MovieCollection movies={this.props.movies} />
-          </Row>
-        </Grid>
-      </div>
+          {/* <h6>
+              <b>Click movie for Details: </b>
+            </h6> */}
+          <MovieCollection movies={this.props.myMovies} />
+        </Row>
+      </Grid>
     );
   }
 }
@@ -85,7 +53,6 @@ const mapStateToProps = state => ({
   myMovies: state.myMovies,
   currentUser: state.currentUser
 });
-
 const mapDispatchToProps = dispatch => {
   return {
     getMyMovies: userId => dispatch(getMyMovies(userId))

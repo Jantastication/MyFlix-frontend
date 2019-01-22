@@ -91,11 +91,13 @@ export const getDetails = imdbID => {
 export const addMovie = (MovieID, UserID, title, poster) => {
   console.log("go to watch list", MovieID, UserID);
   return function(dispatch) {
+    let token = localStorage.getItem("token");
     fetch("http://localhost:3000/api/v1/ratings/", {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({
         imdbID: MovieID,
@@ -116,7 +118,6 @@ export const addMovie = (MovieID, UserID, title, poster) => {
 };
 
 export const getMyMovies = userId => {
-  console.log("going to get my movies", userId);
   return function(dispatch) {
     fetch(`http://localhost:3000/api/v1/myMovies/${userId}`)
       .then(res => res.json())

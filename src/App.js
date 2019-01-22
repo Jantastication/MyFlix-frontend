@@ -31,7 +31,7 @@ const theme = createMuiTheme({
 // const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
 class App extends Component {
-  componentDidMount() {
+  componentWillMount() {
     let token = localStorage.getItem("token");
     if (token) {
       // Fetch user
@@ -54,20 +54,24 @@ class App extends Component {
           <MuiThemeProvider theme={theme}>
             <div>
               <AppBar classes={[]} />
-              <Switch>
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/signup" component={Signup} />
-                <Route exact path="/homepage" component={Homepage} />
-                <Route exact path="/ratings" component={Ratings} />
-                <Route exact path="/ratingsForm" component={RatingsForm} />
-                {/* <Route exact path="/movieForm" component={MovieForm} /> */}
-                <Route exact path="/movie/:id" component={MovieDetails} />
-                <Route exact path="/movies" component={MovieContainer} />
-                <Route exact path="/profile" component={UserProfile} />
+              {this.props.currentUser.id ? (
+                <Switch>
+                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/signup" component={Signup} />
+                  <Route exact path="/homepage" component={Homepage} />
+                  <Route exact path="/ratings" component={Ratings} />
+                  <Route exact path="/ratingsForm" component={RatingsForm} />
+                  {/* <Route exact path="/movieForm" component={MovieForm} /> */}
+                  <Route exact path="/movie/:id" component={MovieDetails} />
+                  <Route exact path="/movies" component={MovieContainer} />
+                  <Route exact path="/profile" component={UserProfile} />
 
-                <Route path="/" render={() => <Redirect to="/homepage" />} />
-              </Switch>
+                  {/* <Route path="/" render={() => <Redirect to="/homepage" />} /> */}
+                </Switch>
+              ) : (
+                <h1>Loading</h1>
+              )}
             </div>
           </MuiThemeProvider>
         </Router>
@@ -78,7 +82,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser.user
+    currentUser: state.currentUser
   };
 };
 const mapDispatchToProps = dispatch => {

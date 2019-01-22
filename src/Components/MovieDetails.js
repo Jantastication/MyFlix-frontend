@@ -93,7 +93,7 @@ class MovieDetails extends Component {
                 onClick={() =>
                   this.props.addMovie(
                     this.props.movie.imdbID,
-                    this.props.currentUser.user.id,
+                    this.props.currentUser.id,
                     this.props.movie.Title,
                     this.props.movie.Poster
                   )

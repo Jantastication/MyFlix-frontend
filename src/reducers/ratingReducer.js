@@ -20,22 +20,33 @@ const initialState = {
   myMovies: [],
   details: {}
 };
-
+const moviePropertyNormalizer = movieArray => {
+  //loop over each movie
+  let normalized = movieArray.map((movie, index) => {
+    let copy = {};
+    Object.keys(movie).forEach(key => {
+      copy[key.toLowerCase()] = movie[key];
+    });
+    return copy;
+  });
+  //loop over movie's properties
+  //set the key to lowercase
+  //keep the value
+  return normalized;
+};
 const reducer = function(currentState = initialState, action) {
   let newState = { ...currentState };
 
   switch (action.type) {
     case SET_MOVIES:
-      console.log("in reducer", action.payload);
-      newState.movies = action.payload; //hc
-      console.log("newState.movies in reducer", newState.movies);
+      newState.movies = moviePropertyNormalizer(action.payload); //hc
+
       break;
     case GET_DETAILS:
       newState.details = action.payload;
       console.log(newState);
       break;
     case ADD_MOVIE:
-      debugger;
       // console.log("is this a movie ratings instance", action.payload);
       // newState = { ...newState, movie: [...newState.movies, action.payload] };
       newState.myMovies = [...newState.myMovies, action.payload];
@@ -58,7 +69,7 @@ const reducer = function(currentState = initialState, action) {
       break;
     case LOGIN:
       newState.currentUser = action.payload;
-      history.push("/homepage");
+      // history.push("/homepage");
       break;
     case SIGNUP:
       newState.currentUser = action.payload;
