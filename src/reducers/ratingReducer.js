@@ -3,21 +3,26 @@ import {
   NEW_RATING,
   LOGIN,
   SIGNUP,
-  LOGOUT
+  LOGOUT,
+  GET_MYMOVIES
 } from "../actions/types";
 import { SET_MOVIES } from "../actions/types";
 import { GET_DETAILS } from "../actions/types";
+import { ADD_MOVIE } from "../actions/types";
+import { DELETE_MYMOVIE } from "../actions/types";
 import history from "../history";
 
 const initialState = {
   items: [],
   item: {},
   movies: [],
-  currentUser: ""
+  currentUser: {},
+  myMovies: [],
+  details: {}
 };
 
-const reducer = function(currentState, action) {
-  const newState = { ...currentState };
+const reducer = function(currentState = initialState, action) {
+  let newState = { ...currentState };
 
   switch (action.type) {
     case SET_MOVIES:
@@ -26,12 +31,27 @@ const reducer = function(currentState, action) {
       console.log("newState.movies in reducer", newState.movies);
       break;
     case GET_DETAILS:
-      console.log("details reducer");
       newState.details = action.payload;
+      console.log(newState);
+      break;
+    case ADD_MOVIE:
+      debugger;
+      // console.log("is this a movie ratings instance", action.payload);
+      // newState = { ...newState, movie: [...newState.movies, action.payload] };
+      newState.myMovies = [...newState.myMovies, action.payload];
+      console.log(newState, "add to list reducer");
+      break;
+    case GET_MYMOVIES:
+      console.log("fetch getMyMovies reducer");
+      newState = { ...newState, myMovies: action.payload };
+      break;
+    case DELETE_MYMOVIE:
+      const movieId = action.payload;
+      newState = newState.myMovies.filter(movie => movie.id !== movieId);
       break;
     case FETCH_RATINGS:
       console.log("fetch ratings reducer");
-      newState = { ...newState, items: action.payload };
+      newState.ratings = { ...newState, items: action.payload };
       break;
     case NEW_RATING:
       newState = { ...newState, items: [...newState.items, action.payload] };
@@ -47,6 +67,8 @@ const reducer = function(currentState, action) {
     case LOGOUT:
       console.log("out");
       localStorage.clear();
+      newState.currentUser = {};
+
       history.push("/login");
       break;
   }

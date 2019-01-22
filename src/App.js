@@ -12,10 +12,16 @@ import UserProfile from "./Components/UserProfile";
 // import MovieCard from "./Components/MovieCard";
 // import MovieForm from "./Components/MovieForm";
 import MovieContainer from "./Components/MovieContainer";
+import { putUserIntoReduxState } from "./actions/usersActions";
+import { connect } from "react-redux";
 
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import MovieDetails from "./Components/MovieDetails";
 
 const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true
+  },
   palette: {
     primary: { main: "#212121" },
     secondary: { main: "#9E9E9E" }
@@ -25,6 +31,22 @@ const theme = createMuiTheme({
 // const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
 class App extends Component {
+  componentDidMount() {
+    let token = localStorage.getItem("token");
+    if (token) {
+      // Fetch user
+      fetch("http://localhost:3000/api/v1/getUserFromToken", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(res => res.json())
+        .then(user => {
+          this.props.putUserIntoReduxState(user);
+        });
+    }
+  }
+
   render() {
     return (
       <div>
@@ -39,8 +61,8 @@ class App extends Component {
                 <Route exact path="/homepage" component={Homepage} />
                 <Route exact path="/ratings" component={Ratings} />
                 <Route exact path="/ratingsForm" component={RatingsForm} />
-                {/* <Route exact path="/movieForm" component={MovieForm} />
-                <Route exact path="/movieCard" component={MovieCard} /> */}
+                {/* <Route exact path="/movieForm" component={MovieForm} /> */}
+                <Route exact path="/movie/:id" component={MovieDetails} />
                 <Route exact path="/movies" component={MovieContainer} />
                 <Route exact path="/profile" component={UserProfile} />
 
@@ -54,4 +76,17 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser.user
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    putUserIntoReduxState: user => dispatch(putUserIntoReduxState(user))
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

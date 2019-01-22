@@ -1,10 +1,11 @@
 import { LOGIN, LOGOUT, SIGNUP, SET_MOVIES, GET_DETAILS } from "./types";
-import { func } from "prop-types";
+import { FETCH_RATINGS, NEW_RATING } from "./types";
+import { ADD_MOVIE, GET_MYMOVIES } from "./types";
+// import { func } from "prop-types";
 const API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
 export const login = user => {
   return function(dispatch) {
-    console.log("we are in", user);
     fetch("http://localhost:3000/api/v1/auth/", {
       method: "POST",
       headers: {
@@ -25,7 +26,12 @@ export const login = user => {
       });
   };
 };
-
+export const putUserIntoReduxState = user => {
+  return {
+    type: LOGIN,
+    payload: user
+  };
+};
 export const logout = () => {
   console.log("logout action");
 
@@ -74,36 +80,96 @@ export const getDetails = imdbID => {
       .then(res => res.json())
       .then(details => {
         console.log(details);
-        return function(dispatch) {
-          dispatch({
-            type: GET_DETAILS,
-            payload: details
-          });
-        };
+        dispatch({
+          type: GET_DETAILS,
+          payload: details
+        });
       });
   };
 };
 
-// export const getDetails = imdbID => {
-//   console.log(imdbID);
-//   // return function(dispatch) {
-//   fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`)
-//     .then(res => res.json())
-//     .then(details => {
-//       console.log(details);
-//       return function(dispatch) {
-//         console.log("dispatching");
-//         dispatch({
-//           type: GET_DETAILS,
-//           payload: details
-//         });
-//       };
-//     });
-// };
-//   dispatch({
-//     type: GET_DETAILS,
-//     payload: details
-//   });
-// });
-// };/
-// };
+export const addMovie = (MovieID, UserID, title, poster) => {
+  console.log("go to watch list", MovieID, UserID);
+  return function(dispatch) {
+    fetch("http://localhost:3000/api/v1/ratings/", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        imdbID: MovieID,
+        user_id: UserID,
+        title: title,
+        poster: poster
+      })
+    })
+      .then(res => res.json())
+      .then(movie => {
+        console.log("movie added", movie);
+        dispatch({
+          type: ADD_MOVIE,
+          payload: movie
+        });
+      });
+  };
+};
+
+export const getMyMovies = userId => {
+  console.log("going to get my movies", userId);
+  return function(dispatch) {
+    fetch(`http://localhost:3000/api/v1/myMovies/${userId}`)
+      .then(res => res.json())
+      .then(user => {
+        dispatch({
+          type: GET_MYMOVIES,
+          payload: user
+        });
+      });
+    //get the movies on my watchlist
+    // fetch("localhost:3000/myMovies")
+  };
+};
+
+export const deleteMyMovie = movieId => {
+  console.log("delete the beech", movieId);
+  fetch(`http://localhost:3000/api/v1/myMovies/${movieId}`, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json"
+    }
+  });
+  //delete the rating,
+  //that will remove from my list
+};
+
+export const fetchRatings = () => dispatch => {
+  console.log("fetching");
+
+  fetch("http://localhost:3000/api/v1/ratings")
+    .then(res => res.json())
+    .then(ratings =>
+      dispatch({
+        type: FETCH_RATINGS,
+        payload: ratings
+      })
+    );
+};
+
+export const createRating = ratingData => dispatch => {
+  console.log("action called");
+  fetch("http://localhost:3000/api/v1/ratings", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify(ratingData)
+  })
+    .then(res => res.json())
+    .then(rating =>
+      dispatch({
+        type: NEW_RATING,
+        payload: rating
+      })
+    );
+};

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createRating } from "../actions/actionCreators";
+import { createRating } from "../actions/usersActions";
+// import { Rating } from "material-ui-rating";
+// import StarRating from "react-star-rating";
+
 import PropTypes from "prop-types";
 
 class RatingsForm extends Component {
@@ -33,6 +36,7 @@ class RatingsForm extends Component {
     return (
       <div>
         <h1>Add Rating</h1>
+
         <form onSubmit={this.onSubmit}>
           <div>
             <label>Rating Score: </label>

@@ -7,6 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 // import MovieDetails from "./MovieDetails";
 import { connect } from "react-redux";
 import { getDetails } from "../actions/usersActions.js";
+import history from "../history";
 
 const styles = {
   cardTitle: {
@@ -34,13 +35,11 @@ class MovieCard extends React.Component {
     this.classes = this.props.classes;
   }
 
-  // componentDidMount() {
-  //   this.props.getDetails();
-  // }
-
   handleClick = () => {
-    console.log("click");
-    getDetails(this.props.movie.imdbID);
+    // console.log("click");
+    let movie = this.props.movie.imdbID;
+    this.props.getDetails(movie);
+    history.push(`movie/${this.props.movie.imdbID}`);
   };
 
   render() {
@@ -58,22 +57,10 @@ class MovieCard extends React.Component {
             <img style={styles.bgImage} src={this.props.movie.Poster} alt="" />
           )}
         </CardMedia>
-        {/* <Button
-          variant="outlined"
-          color="primary"
-          className={this.classes.button}
-        >
-          Add to Watchlist
-        </Button> */}
-        {/* <button type="submit"> Add to Watchlist </button>
-        <button type="submit"> Rate Movie </button> */}
       </Card>
     );
   }
 }
-
-// export default MovieCard;
-// withStyles(styles)(CardMedia);
 
 export default connect(
   null,

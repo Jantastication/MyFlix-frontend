@@ -32,15 +32,15 @@ class ButtonAppBar extends React.Component {
   render() {
     return (
       <div className={this.classes.root}>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
-            <IconButton
+            {/* <IconButton
               className={this.classes.menuButton}
               color="inherit"
               aria-label="Menu"
             >
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
             <Typography
               onClick={() => {
                 history.push("/homepage");
