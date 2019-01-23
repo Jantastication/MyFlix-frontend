@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import RatingsForm from "./RatingsForm";
-import { Rating } from "material-ui-rating";
 
 // import { test } from "../actions/actionCreators";
 import { fetchRatings } from "../actions/usersActions";

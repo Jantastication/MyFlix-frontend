@@ -57,17 +57,15 @@ class App extends Component {
               {this.props.currentUser.id ? (
                 <Switch>
                   <Route exact path="/login" component={Login} />
-                  <Route exact path="/login" component={Login} />
                   <Route exact path="/signup" component={Signup} />
                   <Route exact path="/homepage" component={Homepage} />
                   <Route exact path="/ratings" component={Ratings} />
                   <Route exact path="/ratingsForm" component={RatingsForm} />
-                  {/* <Route exact path="/movieForm" component={MovieForm} /> */}
                   <Route exact path="/movie/:id" component={MovieDetails} />
                   <Route exact path="/movies" component={MovieContainer} />
                   <Route exact path="/profile" component={UserProfile} />
 
-                  {/* <Route path="/" render={() => <Redirect to="/homepage" />} /> */}
+                  <Route path="/" render={() => <Redirect to="/movies" />} />
                 </Switch>
               ) : (
                 <h1>Loading</h1>

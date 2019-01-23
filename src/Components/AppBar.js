@@ -5,8 +5,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import history from "../history";
 import { connect } from "react-redux";
 import { logout } from "../actions/usersActions";
@@ -34,13 +32,6 @@ class ButtonAppBar extends React.Component {
       <div className={this.classes.root}>
         <AppBar position="fixed" style={{ marginBottom: "100px" }}>
           <Toolbar>
-            {/* <IconButton
-              className={this.classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-            >
-              <MenuIcon />
-            </IconButton> */}
             <Typography
               onClick={() => {
                 history.push("/homepage");

@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid } from "react-bootstrap";
-// import { getDetails } from "../actions/usersActions.js";
-
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-// import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { addMovie } from "../actions/usersActions";
-// import { getMyMovies } from "../actions/usersActions";
 
 const styles = {
   card: {
@@ -26,9 +22,12 @@ const styles = {
 
 class MovieDetails extends Component {
   render() {
+    console.log(this.props);
     if (!this.props.movie) {
       return <div />;
     } else {
+      const { movie } = this.props;
+
       return (
         <Grid>
           <br />
@@ -37,52 +36,52 @@ class MovieDetails extends Component {
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 <h4>
-                  <b>{this.props.movie.Title}</b>
+                  <b>{movie.title}</b>
                 </h4>
               </Typography>
               <br />
               <Typography component="p">
-                <img src={this.props.movie.Poster} alt="" />
+                <img src={movie.poster} alt="" />
               </Typography>
               <br />
               <Typography component="p">
                 <div>
-                  <b>Plot:</b> {this.props.movie.Plot}
+                  <b>Plot:</b> {movie.plot}
                 </div>
               </Typography>
               <Typography component="p">
                 <div>
-                  <b>Actors:</b> {this.props.movie.Actors}
+                  <b>Actors:</b> {movie.actors}
                 </div>
               </Typography>
               <Typography component="p">
                 <div>
-                  <b>Rated:</b> {this.props.movie.Rated}
+                  <b>Rated:</b> {movie.rated}
                 </div>
               </Typography>
               <Typography component="p">
                 <div>
-                  <b>IMDB ID:</b> {this.props.movie.imdbID}
+                  <b>IMDB ID:</b> {movie.imdbID}
                 </div>
               </Typography>
               <Typography component="p">
                 <div>
-                  <b>Runtime:</b> {this.props.movie.Runtime}
+                  <b>Runtime:</b> {movie.runtime}
                 </div>
               </Typography>
               <Typography component="p">
                 <div>
-                  <b>Awards:</b> {this.props.movie.Awards}
+                  <b>Awards:</b> {movie.awards}
                 </div>
               </Typography>
               <Typography component="p">
                 <div>
-                  <b>Released:</b> {this.props.movie.Released}
+                  <b>Released:</b> {movie.released}
                 </div>
               </Typography>
               <Typography component="p">
                 <div>
-                  <b>Website:</b> {this.props.movie.Website}
+                  <b>Website:</b> {movie.website}
                 </div>
               </Typography>
             </CardContent>
@@ -92,10 +91,10 @@ class MovieDetails extends Component {
                 color="primary"
                 onClick={() =>
                   this.props.addMovie(
-                    this.props.movie.imdbID,
+                    movie.imdbid,
                     this.props.currentUser.id,
-                    this.props.movie.Title,
-                    this.props.movie.Poster
+                    movie.title,
+                    movie.poster
                   )
                 }
               >
@@ -123,8 +122,15 @@ const mapStateToProps = state => {
     myMovies: state.myMovies
   };
 };
+const mapDispatchToProps = dispatch => {
+  return {
+    addMovie: (imbdid, userId, title, poster) => {
+      return dispatch(addMovie(imbdid, userId, title, poster));
+    }
+  };
+};
 // map action addItem here
 export default connect(
   mapStateToProps,
-  { addMovie }
+  mapDispatchToProps
 )(withStyles(styles)(MovieDetails));

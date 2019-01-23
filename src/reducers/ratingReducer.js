@@ -43,22 +43,30 @@ const reducer = function(currentState = initialState, action) {
 
       break;
     case GET_DETAILS:
-      newState.details = action.payload;
+      newState.details = moviePropertyNormalizer([action.payload])[0];
       console.log(newState);
       break;
     case ADD_MOVIE:
       // console.log("is this a movie ratings instance", action.payload);
       // newState = { ...newState, movie: [...newState.movies, action.payload] };
-      newState.myMovies = [...newState.myMovies, action.payload];
+      newState.myMovies = [
+        ...newState.myMovies,
+        moviePropertyNormalizer([action.payload])[0]
+      ];
       console.log(newState, "add to list reducer");
       break;
     case GET_MYMOVIES:
       console.log("fetch getMyMovies reducer");
-      newState = { ...newState, myMovies: action.payload };
+      newState = {
+        ...newState,
+        myMovies: moviePropertyNormalizer(action.payload)
+      };
       break;
     case DELETE_MYMOVIE:
       const movieId = action.payload;
-      newState = newState.myMovies.filter(movie => movie.id !== movieId);
+      newState.myMovies = newState.myMovies.filter(
+        movie => movie.id !== movieId
+      );
       break;
     case FETCH_RATINGS:
       console.log("fetch ratings reducer");
@@ -87,18 +95,3 @@ const reducer = function(currentState = initialState, action) {
 };
 
 export default reducer;
-
-// const reducer = (state = initialState, action) => {
-// const reducer = (state = currentState, action) => {
-
-// case SET_MOVIES:
-//       console.log("in reducer", action.payload);
-//       // state = { ...state, movies: action.payload }; // alan, gives map error
-//       newState.movies = action.payload; //hc
-//       console.log("newState.movies in reducer", newState.movies);
-//       // newState = {
-//       //   items: newState.items,
-//       //   item: newState.item,
-//       //   movies: action.payload,
-//       //   currentUser: newState.currentUser
-//       // };

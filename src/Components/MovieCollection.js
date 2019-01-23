@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import { withStyles } from "@material-ui/core/styles";
 import MovieCard from "./MovieCard";
@@ -8,24 +9,40 @@ const styles = {
     marginBottom: 20
   }
 };
-const MovieCollection = props => {
-  debugger;
-  const movieColumns = props.movies
-    ? props.movies.map((movie, index) => (
-        <Col key={index} xs={12} sm={4} md={3} lg={3}>
-          <MovieCard movie={movie} />
-        </Col>
-      ))
-    : null;
-  return (
-    <>
-      <Row>{movieColumns}</Row>
-    </>
-  );
+class MovieCollection extends Component {
+  render() {
+    const movieColumns = this.props.movies
+      ? this.props.movies.map((movie, index) => (
+          <Col key={index} xs={12} sm={4} md={3} lg={3}>
+            <MovieCard movie={movie} />
+          </Col>
+        ))
+      : null;
+    return (
+      <>
+        <Row>{movieColumns}</Row>
+      </>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    movie: state.details,
+    currentUser: state.currentUser,
+    myMovies: state.myMovies
+  };
 };
 
-export default MovieCollection;
-withStyles(styles)(Row);
+// export default connect(
+//   mapStateToProps,
+//   { getDetails, deleteMyMovie }
+// )(withStyles(styles)(MovieCard));
+
+export default connect(
+  mapStateToProps,
+  null
+)(withStyles(styles)(MovieCollection));
 
 // export default class MovieCollection extends Component {
 //   render() {
