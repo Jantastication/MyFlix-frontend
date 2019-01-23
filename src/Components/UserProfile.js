@@ -15,8 +15,13 @@ const styles = {
 };
 
 class UserProfile extends Component {
-  componentWillMount() {
-    this.props.getMyMovies(this.props.currentUser.id);
+  componentDidMount() {
+    // console.log(this.props.currentUser);
+    console.log(JSON.parse(localStorage.user).id);
+
+    if (this.props.currentUser) {
+      this.props.getMyMovies(JSON.parse(localStorage.user).id);
+    }
     // Fetch those movies!!
     // in the actionCreator THAT YOU CREATE
     // fetch("localhost:3000/myMovies")

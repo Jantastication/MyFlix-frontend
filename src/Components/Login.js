@@ -30,7 +30,7 @@ class Login extends Component {
   handleOnSubmit = e => {
     e.preventDefault();
     this.props.login(this.state);
-    history.push("/Homepage");
+    history.push("/Movies");
   };
 
   render() {

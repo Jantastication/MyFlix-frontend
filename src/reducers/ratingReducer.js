@@ -54,6 +54,7 @@ const reducer = function(currentState = initialState, action) {
         moviePropertyNormalizer([action.payload])[0]
       ];
       console.log(newState, "add to list reducer");
+      history.push("/profile");
       break;
     case GET_MYMOVIES:
       console.log("fetch getMyMovies reducer");
@@ -76,8 +77,10 @@ const reducer = function(currentState = initialState, action) {
       newState = { ...newState, items: [...newState.items, action.payload] };
       break;
     case LOGIN:
-      newState.currentUser = action.payload;
-      // history.push("/homepage");
+      console.log("in reducer: ", action.payload);
+
+      newState.currentUser = action.payload.user;
+      history.push("/Movies");
       break;
     case SIGNUP:
       newState.currentUser = action.payload;
