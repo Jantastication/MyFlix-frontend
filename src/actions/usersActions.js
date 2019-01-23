@@ -41,8 +41,7 @@ export const putUserIntoReduxState = user => {
   };
 };
 export const logout = () => {
-  console.log("logout action");
-
+  // console.log("logout action");
   return { type: LOGOUT };
 };
 

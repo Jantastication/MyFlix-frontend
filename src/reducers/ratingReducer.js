@@ -53,7 +53,7 @@ const reducer = function(currentState = initialState, action) {
         ...newState.myMovies,
         moviePropertyNormalizer([action.payload])[0]
       ];
-      console.log(newState, "add to list reducer");
+      // console.log(newState, "add to list reducer");
       history.push("/profile");
       break;
     case GET_MYMOVIES:
@@ -70,7 +70,7 @@ const reducer = function(currentState = initialState, action) {
       );
       break;
     case FETCH_RATINGS:
-      console.log("fetch ratings reducer");
+      // console.log("fetch ratings reducer");
       newState.ratings = { ...newState, items: action.payload };
       break;
     case NEW_RATING:
@@ -87,7 +87,7 @@ const reducer = function(currentState = initialState, action) {
       history.push("/homepage");
       break;
     case LOGOUT:
-      console.log("out");
+      // console.log("out");
       localStorage.clear();
       newState.currentUser = {};
 
