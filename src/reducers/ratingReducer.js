@@ -39,6 +39,8 @@ const reducer = function(currentState = initialState, action) {
 
   switch (action.type) {
     case SET_MOVIES:
+      console.log("set movies reducer: ", action.payload);
+
       newState.movies = moviePropertyNormalizer(action.payload); //hc
 
       break;
@@ -79,7 +81,9 @@ const reducer = function(currentState = initialState, action) {
     case LOGIN:
       console.log("in reducer: ", action.payload);
 
-      newState.currentUser = action.payload.user;
+      newState.currentUser = action.payload.user
+        ? action.payload.user
+        : action.payload;
       history.push("/Movies");
       break;
     case SIGNUP:

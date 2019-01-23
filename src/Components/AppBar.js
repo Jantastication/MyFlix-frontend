@@ -36,11 +36,11 @@ class ButtonAppBar extends React.Component {
               onClick={() => {
                 history.push("/homepage");
               }}
-              variant="h6"
+              variant="h5"
               color="inherit"
               className={this.classes.grow}
             >
-              FLIXBOT
+              FLIXWORLD
             </Typography>
             <Button
               onClick={() => {

@@ -71,12 +71,25 @@ export const searchMovies = query => {
     fetch(`http://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`)
       .then(res => res.json())
       .then(movies => {
-        console.log("getting movie back", movies.Search);
+        console.log("response from omdb: ", movies);
 
-        dispatch({
-          type: SET_MOVIES,
-          payload: movies.Search
-        });
+        console.log("getting movie back", movies.Search);
+        if (movies.Response === "False") {
+          dispatch({
+            type: SET_MOVIES,
+            payload: [
+              {
+                title: "Movie not found.",
+                poster: "N/A"
+              }
+            ]
+          });
+        } else {
+          dispatch({
+            type: SET_MOVIES,
+            payload: movies.Search
+          });
+        }
       });
   };
 };

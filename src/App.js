@@ -2,21 +2,20 @@ import React, { Component } from "react";
 import { Router } from "react-router-dom";
 import { Switch, Route, Redirect } from "react-router";
 import AppBar from "./Components/AppBar";
-import Ratings from "./Components/Ratings";
-import RatingsForm from "./Components/RatingsForm";
 import history from "./history";
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
 import Homepage from "./Components/Homepage";
 import UserProfile from "./Components/UserProfile";
 import { PrivateRoute } from "./Components/PrivateRoute";
-// import MovieForm from "./Components/MovieForm";
 import MovieContainer from "./Components/MovieContainer";
 import { putUserIntoReduxState } from "./actions/usersActions";
 import { connect } from "react-redux";
-
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import MovieDetails from "./Components/MovieDetails";
+// import MovieForm from "./Components/MovieForm";
+// import Ratings from "./Components/Ratings";
+// import RatingsForm from "./Components/RatingsForm";
 
 const theme = createMuiTheme({
   typography: {

@@ -44,33 +44,59 @@ class MovieCard extends React.Component {
 
   render() {
     // console.log("Movie Card: ", this.props);
+    if (this.props.movie.title === "Movie not found.") {
+      return (
+        <div>
+          <b>Nope.</b>
+        </div>
+      );
+    } else {
+      return (
+        <Card onClick={this.handleClick}>
+          <b>{this.props.movie.title}</b>
+          <CardMedia>
+            {this.props.movie.poster === "N/A" ? (
+              <img
+                src="https://farm5.staticflickr.com/4112/5170590074_714d36db83_b.jpg"
+                width="300"
+                alt=""
+              />
+            ) : (
+              <img
+                style={styles.bgImage}
+                src={this.props.movie.poster}
+                alt=""
+              />
+            )}
+          </CardMedia>
+          {this.props.canDelete && (
+            <Button
+              variant="contained"
+              color="default"
+              onClick={() =>
+                this.props.deleteMyMovie(
+                  this.props.movie.id,
+                  this.props.currentUser.id
+                )
+              }
+            >
+              <b>Delete</b>
+            </Button>
 
-    return (
-      <Card onClick={this.handleClick}>
-        <b>{this.props.movie.title}</b>
-        <CardMedia>
-          {this.props.movie.poster === "N/A" ? (
-            <img
-              src="https://farm5.staticflickr.com/4112/5170590074_714d36db83_b.jpg"
-              width="300"
-              alt=""
-            />
-          ) : (
-            <img style={styles.bgImage} src={this.props.movie.poster} alt="" />
+            // <Button
+            //   onClick={() =>
+            //     this.props.deleteMyMovie(
+            //       this.props.movie.id,
+            //       this.props.currentUser.id
+            //     )
+            //   }
+            // >
+            //   DELETE
+            // </Button>
           )}
-        </CardMedia>
-        <Button
-          onClick={() =>
-            this.props.deleteMyMovie(
-              this.props.movie.id,
-              this.props.currentUser.id
-            )
-          }
-        >
-          DELETE
-        </Button>
-      </Card>
-    );
+        </Card>
+      );
+    }
   }
 }
 

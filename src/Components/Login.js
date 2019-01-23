@@ -46,7 +46,7 @@ class Login extends Component {
             <LockOutlinedIcon />
           </Avatar>
           <Typography align="center" component="h1" variant="h5">
-            Sign in
+            Login
           </Typography>
           <form onSubmit={e => this.handleOnSubmit(e)}>
             <FormControl margin="normal" required fullWidth>

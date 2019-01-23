@@ -98,13 +98,6 @@ class MovieDetails extends Component {
                   )
                 }
               >
-                {/* do conditional rendering here to display correct buttons */}
-                {/* example:
-                    this.props.movie.rating.score !== null ?
-                    true buttons
-                    :
-                    false buttons
-                */}
                 <b>Add To My Watchlist</b>
               </Button>
             </CardActions>

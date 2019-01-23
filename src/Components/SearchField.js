@@ -60,7 +60,8 @@ class SearchField extends React.Component {
               style={{
                 position: "relative",
                 fontSize: "30px",
-                bottom: "100px"
+                bottom: "100px",
+                color: "#d4d4dc"
               }}
             >
               Search
@@ -71,14 +72,21 @@ class SearchField extends React.Component {
                 width: "700px",
                 display: "block !important",
                 opacity: "1 !important",
-                backgroundColor: "white",
+                backgroundColor: "#d4d4dc",
                 fontSize: "60px"
               }}
               value={this.state.searchInput}
               onChange={this.handleChange}
             />
             <FormHelperText id="component-helper-text">
-              <i> Search: "The Wolf of Wall Street.."</i>
+              <i
+                style={{
+                  color: "#d4d4dc"
+                }}
+              >
+                {" "}
+                Search: "The Wolf of Wall Street.."
+              </i>
             </FormHelperText>
           </FormControl>
         </form>
