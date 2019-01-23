@@ -9,7 +9,7 @@ import Signup from "./Components/Signup";
 import Login from "./Components/Login";
 import Homepage from "./Components/Homepage";
 import UserProfile from "./Components/UserProfile";
-// import MovieCard from "./Components/MovieCard";
+import { PrivateRoute } from "./Components/PrivateRoute";
 // import MovieForm from "./Components/MovieForm";
 import MovieContainer from "./Components/MovieContainer";
 import { putUserIntoReduxState } from "./actions/usersActions";
@@ -54,24 +54,25 @@ class App extends Component {
           <MuiThemeProvider theme={theme}>
             <div>
               <AppBar classes={[]} />
-              {this.props.currentUser.id ? (
-                <Switch>
-                  <Route exact path="/login" component={Login} />
-                  <Route exact path="/login" component={Login} />
-                  <Route exact path="/signup" component={Signup} />
-                  <Route exact path="/homepage" component={Homepage} />
-                  <Route exact path="/ratings" component={Ratings} />
-                  <Route exact path="/ratingsForm" component={RatingsForm} />
-                  {/* <Route exact path="/movieForm" component={MovieForm} /> */}
-                  <Route exact path="/movie/:id" component={MovieDetails} />
-                  <Route exact path="/movies" component={MovieContainer} />
-                  <Route exact path="/profile" component={UserProfile} />
 
-                  {/* <Route path="/" render={() => <Redirect to="/homepage" />} /> */}
-                </Switch>
-              ) : (
-                <h1>Loading</h1>
-              )}
+              {/* {this.props.currentUser.id ? ( */}
+              <Switch>
+                <Route exact path="/signup" component={Signup} />
+                <Route exact path="/homepage" component={Homepage} />
+                <Route exact path="/login" component={Login} />
+                <PrivateRoute
+                  exact
+                  path="/movie/:id"
+                  component={MovieDetails}
+                />
+                <PrivateRoute exact path="/Movies" component={MovieContainer} />
+                <PrivateRoute exact path="/profile" component={UserProfile} />
+
+                {/* <Route path="/" render={() => <Redirect to="/Movies" />} /> */}
+              </Switch>
+              {/* ) : (
+                <h6>....</h6>
+              )} */}
             </div>
           </MuiThemeProvider>
         </Router>

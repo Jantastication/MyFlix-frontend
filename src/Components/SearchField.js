@@ -12,7 +12,8 @@ import { connect } from "react-redux";
 const styles = theme => ({
   container: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    width: "300px"
   },
   formControl: {
     margin: theme.spacing.unit
@@ -26,7 +27,7 @@ class SearchField extends React.Component {
 
   componentDidMount() {
     this.forceUpdate();
-    console.log("search input", this.state.searchInput);
+    // console.log("search input", this.state.searchInput);
   }
 
   handleChange = event => {
@@ -35,7 +36,7 @@ class SearchField extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("submitting search.");
+    // console.log("submitting search.");
 
     this.props.searchMovies(this.state.searchInput);
   };
@@ -54,9 +55,25 @@ class SearchField extends React.Component {
             className={classes.formControl}
             aria-describedby="component-helper-text"
           >
-            <InputLabel htmlFor="component-helper">Search</InputLabel>
+            <InputLabel
+              htmlFor="component-helper"
+              style={{
+                position: "relative",
+                fontSize: "30px",
+                bottom: "100px"
+              }}
+            >
+              Search
+            </InputLabel>
             <Input
               id="component-helper"
+              style={{
+                width: "700px",
+                display: "block !important",
+                opacity: "1 !important",
+                backgroundColor: "white",
+                fontSize: "60px"
+              }}
               value={this.state.searchInput}
               onChange={this.handleChange}
             />

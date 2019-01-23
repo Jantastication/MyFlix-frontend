@@ -30,12 +30,13 @@ class Login extends Component {
   handleOnSubmit = e => {
     e.preventDefault();
     this.props.login(this.state);
-    history.push("/Homepage");
+    history.push("/Movies");
   };
 
   render() {
     return (
       <div align="center">
+        <br />
         <CssBaseline />
         <Paper
           style={{ padding: 40, margin: 100, maxWidth: 420 }}

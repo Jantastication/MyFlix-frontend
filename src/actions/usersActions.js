@@ -1,4 +1,11 @@
-import { LOGIN, LOGOUT, SIGNUP, SET_MOVIES, GET_DETAILS } from "./types";
+import {
+  LOGIN,
+  LOGOUT,
+  SIGNUP,
+  SET_MOVIES,
+  GET_DETAILS,
+  DELETE_MYMOVIE
+} from "./types";
 import { FETCH_RATINGS, NEW_RATING } from "./types";
 import { ADD_MOVIE, GET_MYMOVIES } from "./types";
 // import { func } from "prop-types";
@@ -19,6 +26,7 @@ export const login = user => {
       .then(res => res.json())
       .then(result => {
         localStorage.setItem("token", result.token);
+        localStorage.setItem("user", JSON.stringify(result.user));
         dispatch({
           type: LOGIN,
           payload: result
@@ -33,8 +41,7 @@ export const putUserIntoReduxState = user => {
   };
 };
 export const logout = () => {
-  console.log("logout action");
-
+  // console.log("logout action");
   return { type: LOGOUT };
 };
 
@@ -52,6 +59,7 @@ export const signup = user => {
       .then(res => res.json())
       .then(result => {
         localStorage.setItem("token", result.token);
+        localStorage.setItem("user", JSON.stringify(result.user));
         dispatch({ type: SIGNUP, payload: result });
       });
   };
@@ -89,7 +97,6 @@ export const getDetails = imdbID => {
 };
 
 export const addMovie = (MovieID, UserID, title, poster) => {
-  console.log("go to watch list", MovieID, UserID);
   return function(dispatch) {
     let token = localStorage.getItem("token");
     fetch("http://localhost:3000/api/v1/ratings/", {
@@ -132,14 +139,22 @@ export const getMyMovies = userId => {
   };
 };
 
-export const deleteMyMovie = movieId => {
+export const deleteMyMovie = (movieId, userId) => {
   console.log("delete the beech", movieId);
-  fetch(`http://localhost:3000/api/v1/myMovies/${movieId}`, {
-    method: "DELETE",
-    headers: {
-      "content-type": "application/json"
-    }
-  });
+  return function(dispatch) {
+    fetch(`http://localhost:3000/api/v1/myMovies/${movieId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({ user_id: userId })
+    }).then(
+      dispatch({
+        type: DELETE_MYMOVIE,
+        payload: movieId
+      })
+    );
+  };
   //delete the rating,
   //that will remove from my list
 };

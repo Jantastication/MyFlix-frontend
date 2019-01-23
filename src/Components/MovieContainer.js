@@ -10,8 +10,8 @@ import { searchMovies } from "../actions/usersActions.js";
 
 class MovieContainer extends Component {
   render() {
-    console.log("movies");
-    console.log("OVER HERE", this.props.movies);
+    // console.log("movies");
+    // console.log("OVER HERE", this.props.movies);
     return (
       <div>
         <br />
