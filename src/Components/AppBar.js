@@ -32,7 +32,7 @@ class ButtonAppBar extends React.Component {
   render() {
     return (
       <div className={this.classes.root}>
-        <AppBar position="fixed">
+        <AppBar position="fixed" style={{ marginBottom: "100px" }}>
           <Toolbar>
             {/* <IconButton
               className={this.classes.menuButton}

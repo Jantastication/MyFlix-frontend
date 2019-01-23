@@ -9,16 +9,19 @@ const styles = {
   }
 };
 const MovieCollection = props => {
-  console.log("is this real?", props.movies);
+  debugger;
   const movieColumns = props.movies
-    ? props.movies.map(movie => (
-        <Col key={movie.id} xs={12} sm={4} md={3} lg={3}>
+    ? props.movies.map((movie, index) => (
+        <Col key={index} xs={12} sm={4} md={3} lg={3}>
           <MovieCard movie={movie} />
         </Col>
       ))
     : null;
-
-  return <Row>{movieColumns}</Row>;
+  return (
+    <>
+      <Row>{movieColumns}</Row>
+    </>
+  );
 };
 
 export default MovieCollection;

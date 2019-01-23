@@ -45,16 +45,16 @@ class MovieCard extends React.Component {
   render() {
     return (
       <Card onClick={this.handleClick}>
-        <b>{this.props.movie.Title}</b>
+        <b>{this.props.movie.title}</b>
         <CardMedia>
-          {this.props.movie.Poster === "N/A" ? (
+          {this.props.movie.poster === "N/A" ? (
             <img
               src="https://farm5.staticflickr.com/4112/5170590074_714d36db83_b.jpg"
               width="300"
               alt=""
             />
           ) : (
-            <img style={styles.bgImage} src={this.props.movie.Poster} alt="" />
+            <img style={styles.bgImage} src={this.props.movie.poster} alt="" />
           )}
         </CardMedia>
       </Card>
