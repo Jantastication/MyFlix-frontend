@@ -17,6 +17,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Visibility from "material-ui/svg-icons/action/visibility";
 import VisibilityOff from "material-ui/svg-icons/action/visibility-off";
 import myImage from "../Components/images/image-2019-01-24.png";
+import VideocamIcon from "@material-ui/icons/Videocam";
 
 const styles = {
   cardTitle: {
@@ -115,6 +116,9 @@ class MovieCard extends React.Component {
                   <DeleteIcon />
                 </Button>
                 <Button onClick={this.onToggleHandler}>{this.setIcon()}</Button>
+                <Button>
+                  <VideocamIcon />
+                </Button>
               </div>
             )}
           </CardContent>
