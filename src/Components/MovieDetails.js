@@ -9,6 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { addMovie } from "../actions/usersActions";
+import myImage from "../Components/images/image-2019-01-24.png";
 
 const styles = {
   card: {
@@ -44,11 +45,7 @@ class MovieDetails extends Component {
               <br />
               <Typography component="p">
                 {movie.poster === "N/A" ? (
-                  <img
-                    src="https://farm5.staticflickr.com/4112/5170590074_714d36db83_b.jpg"
-                    width="230"
-                    alt=""
-                  />
+                  <img src={myImage} width="230" height="320" alt="" />
                 ) : (
                   <img src={movie.poster} alt="" />
                 )}

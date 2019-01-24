@@ -16,6 +16,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 // import { IconButton } from "material-ui";
 import Visibility from "material-ui/svg-icons/action/visibility";
 import VisibilityOff from "material-ui/svg-icons/action/visibility-off";
+import myImage from "../Components/images/image-2019-01-24.png";
 
 const styles = {
   cardTitle: {
@@ -90,11 +91,7 @@ class MovieCard extends React.Component {
             <b>{this.props.movie.title}</b>
             <CardMedia onClick={this.handleClick}>
               {this.props.movie.poster === "N/A" ? (
-                <img
-                  src="https://farm5.staticflickr.com/4112/5170590074_714d36db83_b.jpg"
-                  width="230"
-                  alt=""
-                />
+                <img src={myImage} width="230" height="320" alt="" />
               ) : (
                 <img
                   style={styles.bgImage}

@@ -15,7 +15,7 @@ export default class Homepage extends Component {
         <video
           autoPlay
           muted
-          loop
+          looç
           id="background-video"
           style={{
             position: "fixed",
