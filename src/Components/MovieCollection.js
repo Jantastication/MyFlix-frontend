@@ -14,7 +14,7 @@ class MovieCollection extends Component {
     const movieColumns = this.props.movies
       ? this.props.movies.map((movie, index) => (
           <Col key={index} xs={12} sm={4} md={3} lg={3}>
-            <MovieCard movie={movie} />
+            <MovieCard canDelete={this.props.canDelete} movie={movie} />
           </Col>
         ))
       : null;

@@ -30,13 +30,19 @@ class UserProfile extends Component {
   render() {
     return (
       <Grid style={styles.movieContainer}>
-        <h1> Your Watchlist:</h1>
+        <h1
+          style={{
+            color: "#d4d4dc"
+          }}
+        >
+          {" "}
+          Your Watchlist:
+        </h1>
         <Row>....</Row>
         <Row>
           <br />
           <br />
-
-          <MovieCollection movies={this.props.myMovies} />
+          <MovieCollection canDelete movies={this.props.myMovies} />
         </Row>
       </Grid>
     );
