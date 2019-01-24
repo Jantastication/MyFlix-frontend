@@ -31,6 +31,8 @@ class MovieDetails extends Component {
       return (
         <Grid>
           <br />
+          <br />
+          <br />
           <Card>
             <CardMedia />
             <CardContent>
@@ -41,7 +43,15 @@ class MovieDetails extends Component {
               </Typography>
               <br />
               <Typography component="p">
-                <img src={movie.poster} alt="" />
+                {movie.poster === "N/A" ? (
+                  <img
+                    src="https://farm5.staticflickr.com/4112/5170590074_714d36db83_b.jpg"
+                    width="230"
+                    alt=""
+                  />
+                ) : (
+                  <img src={movie.poster} alt="" />
+                )}
               </Typography>
               <br />
               <Typography component="p">

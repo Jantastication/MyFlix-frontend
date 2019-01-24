@@ -2,9 +2,7 @@ import React from "react";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-// import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-// import MovieDetails from "./MovieDetails";
 import { connect } from "react-redux";
 import { getDetails, deleteMyMovie } from "../actions/usersActions.js";
 import history from "../history";
@@ -13,6 +11,11 @@ import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import ToggleIcon from "material-ui-toggle-icon";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+// import { IconButton } from "material-ui";
+import Visibility from "material-ui/svg-icons/action/visibility";
+import VisibilityOff from "material-ui/svg-icons/action/visibility-off";
 
 const styles = {
   cardTitle: {
@@ -39,6 +42,22 @@ class MovieCard extends React.Component {
     super(props);
     this.classes = this.props.classes;
   }
+  state = {
+    favorite: false
+  };
+
+  setIcon() {
+    if (!this.state.favorite) {
+      return <FavoriteBorderIcon />;
+    } else {
+      return <FavoriteIcon />;
+    }
+  }
+
+  onToggleHandler = () => {
+    console.log("click");
+    this.setState({ favorite: !this.state.favorite });
+  };
 
   handleClick = () => {
     // console.log("click");
@@ -66,14 +85,14 @@ class MovieCard extends React.Component {
       );
     } else {
       return (
-        <Card onClick={this.handleClick}>
+        <Card>
           <CardContent>
             <b>{this.props.movie.title}</b>
-            <CardMedia>
+            <CardMedia onClick={this.handleClick}>
               {this.props.movie.poster === "N/A" ? (
                 <img
                   src="https://farm5.staticflickr.com/4112/5170590074_714d36db83_b.jpg"
-                  width="300"
+                  width="230"
                   alt=""
                 />
               ) : (
@@ -98,12 +117,7 @@ class MovieCard extends React.Component {
                 >
                   <DeleteIcon />
                 </Button>
-                <Button
-                  // variant="contained"
-                  color="default"
-                >
-                  <FavoriteIcon />
-                </Button>
+                <Button onClick={this.onToggleHandler}>{this.setIcon()}</Button>
               </div>
             )}
           </CardContent>

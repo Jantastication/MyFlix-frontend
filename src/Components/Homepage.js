@@ -38,7 +38,7 @@ export default class Homepage extends Component {
             textAlign: "center"
           }}
         >
-          <h1>FLIX WORLD</h1>
+          <h1>MY FLIX</h1>
           <p>Your Movie Database</p>
           <br />
 
