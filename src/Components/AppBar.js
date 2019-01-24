@@ -40,7 +40,7 @@ class ButtonAppBar extends React.Component {
               color="inherit"
               className={this.classes.grow}
             >
-              FLIX WORLD
+              MY FLIX
             </Typography>
             <Button
               onClick={() => {
@@ -58,19 +58,19 @@ class ButtonAppBar extends React.Component {
             >
               Movies
             </Button>
-            <Button
+            {/* <Button
               onClick={() => {
                 history.push("/login");
               }}
               color="inherit"
             >
               Login
-            </Button>
+            </Button> */}
 
             <Button
               onClick={() => {
                 this.props.logout();
-                history.push("/login");
+                history.push("/Homepage");
               }}
               color="inherit"
             >

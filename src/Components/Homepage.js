@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 // import myImage from "/Users/Janu/Development/Mod5_project/larabot-frontend/src/Components/images/Lara.jpeg";
 import myVideo from "/Users/Janu/Development/Mod5_project/larabot-frontend/src/Components/images/Blue_Particle_Motion_Background_1080.mov";
-// import Button from "@material-ui/core/Button";
+import Button from "@material-ui/core/Button";
+import history from "../history";
 // import PropTypes from "prop-types";
 // import { withStyles } from "@material-ui/core/styles";
 // import ButtonBase from "@material-ui/core/ButtonBase";
@@ -14,7 +15,7 @@ export default class Homepage extends Component {
         <video
           autoPlay
           muted
-          loop
+          looç
           id="background-video"
           style={{
             position: "fixed",
@@ -26,6 +27,31 @@ export default class Homepage extends Component {
         >
           <source src={myVideo} type="video/mp4" />
         </video>
+        <div
+          style={{
+            position: "fixed",
+            bottom: 360,
+            background: "rgba(0, 0, 0, 0)",
+            color: "#f1f1f1",
+            width: "100%",
+            padding: "20px",
+            textAlign: "center"
+          }}
+        >
+          <h1>MY FLIX</h1>
+          <p>Your Movie Database</p>
+          <br />
+
+          <Button
+            variant="contained"
+            color="default"
+            onClick={() => {
+              history.push("/login");
+            }}
+          >
+            Enter Site
+          </Button>
+        </div>
       </div>
     );
   }
