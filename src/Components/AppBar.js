@@ -40,7 +40,7 @@ class ButtonAppBar extends React.Component {
               color="inherit"
               className={this.classes.grow}
             >
-              FLIXWORLD
+              FLIX WORLD
             </Typography>
             <Button
               onClick={() => {

@@ -42,7 +42,6 @@ class UserProfile extends Component {
         <Row>
           <br />
           <br />
-          lol
           <MovieCollection canDelete movies={this.props.myMovies} />
         </Row>
       </Grid>

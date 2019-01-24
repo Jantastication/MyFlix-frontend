@@ -8,6 +8,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { getDetails, deleteMyMovie } from "../actions/usersActions.js";
 import history from "../history";
+import { CardContent } from "@material-ui/core";
 
 const styles = {
   cardTitle: {
@@ -53,47 +54,49 @@ class MovieCard extends React.Component {
     } else {
       return (
         <Card onClick={this.handleClick}>
-          <b>{this.props.movie.title}</b>
-          <CardMedia>
-            {this.props.movie.poster === "N/A" ? (
-              <img
-                src="https://farm5.staticflickr.com/4112/5170590074_714d36db83_b.jpg"
-                width="300"
-                alt=""
-              />
-            ) : (
-              <img
-                style={styles.bgImage}
-                src={this.props.movie.poster}
-                alt=""
-              />
-            )}
-          </CardMedia>
-          {this.props.canDelete && (
-            <Button
-              variant="contained"
-              color="default"
-              onClick={() =>
-                this.props.deleteMyMovie(
-                  this.props.movie.id,
-                  this.props.currentUser.id
-                )
-              }
-            >
-              <b>Delete</b>
-            </Button>
+          <CardContent>
+            <b>{this.props.movie.title}</b>
+            <CardMedia>
+              {this.props.movie.poster === "N/A" ? (
+                <img
+                  src="https://farm5.staticflickr.com/4112/5170590074_714d36db83_b.jpg"
+                  width="300"
+                  alt=""
+                />
+              ) : (
+                <img
+                  style={styles.bgImage}
+                  src={this.props.movie.poster}
+                  alt=""
+                />
+              )}
+            </CardMedia>
+            {this.props.canDelete && (
+              <Button
+                variant="contained"
+                color="default"
+                onClick={() =>
+                  this.props.deleteMyMovie(
+                    this.props.movie.id,
+                    this.props.currentUser.id
+                  )
+                }
+              >
+                <b>Delete</b>
+              </Button>
 
-            // <Button
-            //   onClick={() =>
-            //     this.props.deleteMyMovie(
-            //       this.props.movie.id,
-            //       this.props.currentUser.id
-            //     )
-            //   }
-            // >
-            //   DELETE
-            // </Button>
-          )}
+              // <Button
+              //   onClick={() =>
+              //     this.props.deleteMyMovie(
+              //       this.props.movie.id,
+              //       this.props.currentUser.id
+              //     )
+              //   }
+              // >
+              //   DELETE
+              // </Button>
+            )}
+          </CardContent>
         </Card>
       );
     }

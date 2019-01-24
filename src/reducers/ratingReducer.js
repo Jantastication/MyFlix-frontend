@@ -11,6 +11,7 @@ import { GET_DETAILS } from "../actions/types";
 import { ADD_MOVIE } from "../actions/types";
 import { DELETE_MYMOVIE } from "../actions/types";
 import history from "../history";
+import { redirect } from "../history";
 
 const initialState = {
   items: [],
@@ -56,7 +57,7 @@ const reducer = function(currentState = initialState, action) {
         moviePropertyNormalizer([action.payload])[0]
       ];
       // console.log(newState, "add to list reducer");
-      history.push("/profile");
+      redirect("/profile");
       break;
     case GET_MYMOVIES:
       console.log("fetch getMyMovies reducer");
@@ -88,7 +89,7 @@ const reducer = function(currentState = initialState, action) {
       break;
     case SIGNUP:
       newState.currentUser = action.payload;
-      history.push("/homepage");
+      history.push("/Movies");
       break;
     case LOGOUT:
       // console.log("out");

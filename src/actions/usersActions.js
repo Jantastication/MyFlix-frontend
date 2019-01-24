@@ -26,7 +26,7 @@ export const login = user => {
       .then(res => res.json())
       .then(result => {
         localStorage.setItem("token", result.token);
-        localStorage.setItem("user", JSON.stringify(result.user));
+        localStorage.setItem("user", JSON.stringify(result));
         dispatch({
           type: LOGIN,
           payload: result
@@ -59,7 +59,7 @@ export const signup = user => {
       .then(res => res.json())
       .then(result => {
         localStorage.setItem("token", result.token);
-        localStorage.setItem("user", JSON.stringify(result.user));
+        localStorage.setItem("user", JSON.stringify(result));
         dispatch({ type: SIGNUP, payload: result });
       });
   };
