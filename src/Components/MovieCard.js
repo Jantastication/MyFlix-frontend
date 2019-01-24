@@ -9,6 +9,10 @@ import { connect } from "react-redux";
 import { getDetails, deleteMyMovie } from "../actions/usersActions.js";
 import history from "../history";
 import { CardContent } from "@material-ui/core";
+import Icon from "@material-ui/core/Icon";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const styles = {
   cardTitle: {
@@ -48,7 +52,16 @@ class MovieCard extends React.Component {
     if (this.props.movie.title === "Movie not found.") {
       return (
         <div>
-          <b>Nope.</b>
+          <b
+            style={{
+              color: "#d4d4dc"
+            }}
+          >
+            <i>
+              Sorry! The movie you are looking for hasn't made the cut to be
+              featured in our exclusive database.
+            </i>
+          </b>
         </div>
       );
     } else {
@@ -72,29 +85,26 @@ class MovieCard extends React.Component {
               )}
             </CardMedia>
             {this.props.canDelete && (
-              <Button
-                variant="contained"
-                color="default"
-                onClick={() =>
-                  this.props.deleteMyMovie(
-                    this.props.movie.id,
-                    this.props.currentUser.id
-                  )
-                }
-              >
-                <b>Delete</b>
-              </Button>
-
-              // <Button
-              //   onClick={() =>
-              //     this.props.deleteMyMovie(
-              //       this.props.movie.id,
-              //       this.props.currentUser.id
-              //     )
-              //   }
-              // >
-              //   DELETE
-              // </Button>
+              <div>
+                <Button
+                  // variant="contained"
+                  color="default"
+                  onClick={() =>
+                    this.props.deleteMyMovie(
+                      this.props.movie.id,
+                      this.props.currentUser.id
+                    )
+                  }
+                >
+                  <DeleteIcon />
+                </Button>
+                <Button
+                  // variant="contained"
+                  color="default"
+                >
+                  <FavoriteIcon />
+                </Button>
+              </div>
             )}
           </CardContent>
         </Card>

@@ -15,9 +15,16 @@ class MovieContainer extends Component {
     return (
       <div>
         <br />
-        <h1>
-          <b>Welcome To FlixWorld</b>
-        </h1>
+        <br />
+        <br />
+        <br />
+        <h4
+          style={{
+            color: "#d4d4dc"
+          }}
+        >
+          <i> Hi, what move would you like info on? </i>
+        </h4>
         <br />
         <Grid>
           <Row>
