@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import myImage from "/Users/Janu/Development/Mod5_project/larabot-frontend/src/Components/images/Lara.jpeg";
-import myVideo from "/Users/Janu/Development/Mod5_project/larabot-frontend/src/Components/images/Blue_Particle_Motion_Background_1080.mov";
+import myVideo from "/Users/Janu/Development/Flatiron/Module-projects/Mod5_project/larabot-frontend/src/Components/images/Blue_Particle_Motion_Background_1080.mov";
 import Button from "@material-ui/core/Button";
 import history from "../history";
 // import PropTypes from "prop-types";
@@ -15,7 +15,7 @@ export default class Homepage extends Component {
         <video
           autoPlay
           muted
-          looç
+          loop
           id="background-video"
           style={{
             position: "fixed",
@@ -38,8 +38,13 @@ export default class Homepage extends Component {
             textAlign: "center"
           }}
         >
-          <h1>MY FLIX</h1>
-          <p>Your Movie Database</p>
+          <h1>
+            MY FLIX <span> 🎥 </span>{" "}
+          </h1>
+          <p>
+            My Flix let's you catalog a collection of all your favorite movies -
+            watch them, favorite them or save for later!
+          </p>
           <br />
 
           <Button

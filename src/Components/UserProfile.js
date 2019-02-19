@@ -10,7 +10,7 @@ const styles = {
     marginBottom: 20
   },
   movieContainer: {
-    margin: 200
+    marginTop: 120
   }
 };
 

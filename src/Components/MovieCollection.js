@@ -19,9 +19,9 @@ class MovieCollection extends Component {
         ))
       : null;
     return (
-      <>
-        <Row>{movieColumns}</Row>
-      </>
+      // <>
+      <Row>{movieColumns}</Row>
+      // </>
     );
   }
 }

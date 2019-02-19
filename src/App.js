@@ -13,6 +13,7 @@ import { putUserIntoReduxState } from "./actions/usersActions";
 import { connect } from "react-redux";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import MovieDetails from "./Components/MovieDetails";
+
 // import MovieForm from "./Components/MovieForm";
 // import Ratings from "./Components/Ratings";
 // import RatingsForm from "./Components/RatingsForm";
