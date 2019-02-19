@@ -92,6 +92,7 @@ class MovieDetails extends Component {
                 </div>
               </Typography>
             </CardContent>
+
             <CardActions>
               <Button
                 variant="contained"
@@ -109,6 +110,12 @@ class MovieDetails extends Component {
               </Button>
             </CardActions>
           </Card>
+          <br />
+          <Typography component="p">
+            <div style={{ textAlign: "right", color: "white" }}>
+              <b>Made by Janu 🖤 Copyright © 2019 Janu USA, Inc</b>
+            </div>
+          </Typography>
         </Grid>
       );
     }

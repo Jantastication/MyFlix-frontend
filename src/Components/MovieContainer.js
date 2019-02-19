@@ -15,8 +15,9 @@ class MovieContainer extends Component {
     return (
       <div
         style={{
-          borderBottom: "5px solid grey",
-          position: "relative"
+          position: "relative",
+          height: "100vh"
+          // borderBottom: "2px solid dimGrey"
         }}
       >
         <br />

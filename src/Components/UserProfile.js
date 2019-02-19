@@ -10,7 +10,10 @@ const styles = {
     marginBottom: 20
   },
   movieContainer: {
-    marginTop: 120
+    marginTop: 120,
+    position: "relative",
+    height: "100vh"
+    // borderBottom: "2px solid dimGrey"
   }
 };
 
