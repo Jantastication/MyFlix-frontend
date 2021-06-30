@@ -13,17 +13,29 @@ class MovieContainer extends Component {
     // console.log("movies");
     // console.log("OVER HERE", this.props.movies);
     return (
-      <div>
+      <div
+        style={{
+          position: "relative",
+          height: "100vh"
+          // borderBottom: "2px solid dimGrey"
+        }}
+      >
+        <br />
         <br />
         <br />
         <br />
         <br />
         <h4
           style={{
-            color: "#d4d4dc"
+            color: "#d4d4dc",
+            marginLeft: 20
           }}
         >
-          <i> Hi, what move would you like info on? </i>
+          <i>
+            {" "}
+            Hey <b style={{ color: "cyan" }}> Janu </b>, what movie would you
+            like info on?{" "}
+          </i>
         </h4>
         <br />
         <Grid>

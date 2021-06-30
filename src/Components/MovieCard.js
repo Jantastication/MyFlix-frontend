@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
+import { Row, Col } from "react-bootstrap";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
@@ -13,10 +14,11 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ToggleIcon from "material-ui-toggle-icon";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-// import { IconButton } from "material-ui";
 import Visibility from "material-ui/svg-icons/action/visibility";
 import VisibilityOff from "material-ui/svg-icons/action/visibility-off";
 import myImage from "../Components/images/image-2019-01-24.png";
+import VideocamIcon from "@material-ui/icons/Videocam";
+import VideocamOffIcon from "@material-ui/icons/VideocamOff";
 
 const styles = {
   cardTitle: {
@@ -44,7 +46,8 @@ class MovieCard extends React.Component {
     this.classes = this.props.classes;
   }
   state = {
-    favorite: false
+    favorite: false,
+    watched: false
   };
 
   setIcon() {
@@ -55,9 +58,21 @@ class MovieCard extends React.Component {
     }
   }
 
+  setWatched() {
+    if (!this.state.watched) {
+      return <VideocamIcon />;
+    } else {
+      return <VideocamOffIcon />;
+    }
+  }
+
   onToggleHandler = () => {
     console.log("click");
     this.setState({ favorite: !this.state.favorite });
+  };
+  onWatchedHandler = () => {
+    console.log("clack");
+    this.setState({ watched: !this.state.watched });
   };
 
   handleClick = () => {
@@ -86,39 +101,54 @@ class MovieCard extends React.Component {
       );
     } else {
       return (
-        <Card>
-          <CardContent>
-            <b>{this.props.movie.title}</b>
-            <CardMedia onClick={this.handleClick}>
-              {this.props.movie.poster === "N/A" ? (
-                <img src={myImage} width="230" height="320" alt="" />
-              ) : (
-                <img
-                  style={styles.bgImage}
-                  src={this.props.movie.poster}
-                  alt=""
-                />
+        <div>
+          <Card>
+            <CardContent>
+              <b>{this.props.movie.title}</b>
+              <CardMedia onClick={this.handleClick}>
+                {this.props.movie.poster === "N/A" ? (
+                  <img src={myImage} width="230" height="320" alt="" />
+                ) : (
+                  <img
+                    style={styles.bgImage}
+                    src={this.props.movie.poster}
+                    width="230"
+                    height="320"
+                    alt=""
+                  />
+                )}
+              </CardMedia>
+              {this.props.canDelete && (
+                <div>
+                  <Button
+                    // variant="contained"
+                    color="default"
+                    onClick={() =>
+                      this.props.deleteMyMovie(
+                        this.props.movie.id,
+                        this.props.currentUser.id
+                      )
+                    }
+                  >
+                    <DeleteIcon />
+                  </Button>
+                  <Button onClick={this.onToggleHandler}>
+                    {this.setIcon()}
+                  </Button>
+                  <Button onClick={this.onWatchedHandler}>
+                    {this.setWatched()}
+                  </Button>
+                  {/* <Button>
+                  <VideocamIcon />
+                </Button> */}
+                </div>
               )}
-            </CardMedia>
-            {this.props.canDelete && (
-              <div>
-                <Button
-                  // variant="contained"
-                  color="default"
-                  onClick={() =>
-                    this.props.deleteMyMovie(
-                      this.props.movie.id,
-                      this.props.currentUser.id
-                    )
-                  }
-                >
-                  <DeleteIcon />
-                </Button>
-                <Button onClick={this.onToggleHandler}>{this.setIcon()}</Button>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+          <Row>
+            .<p>.</p>
+          </Row>
+        </div>
       );
     }
   }

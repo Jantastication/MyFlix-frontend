@@ -17,6 +17,7 @@ const styles = {
     flexGrow: 1
   },
   menuButton: {
+    // marginLeft: 0,
     marginLeft: -12,
     marginRight: 20
   }
@@ -40,16 +41,8 @@ class ButtonAppBar extends React.Component {
               color="inherit"
               className={this.classes.grow}
             >
-              MY FLIX
+              🎥 MY FLIX
             </Typography>
-            <Button
-              onClick={() => {
-                history.push("/profile");
-              }}
-              color="inherit"
-            >
-              My Profile
-            </Button>
             <Button
               onClick={() => {
                 history.push("/Movies");
@@ -58,6 +51,15 @@ class ButtonAppBar extends React.Component {
             >
               Movies
             </Button>
+            <Button
+              onClick={() => {
+                history.push("/profile");
+              }}
+              color="inherit"
+            >
+              My Profile
+            </Button>
+
             {/* <Button
               onClick={() => {
                 history.push("/login");
@@ -70,21 +72,21 @@ class ButtonAppBar extends React.Component {
             <Button
               onClick={() => {
                 this.props.logout();
-                history.push("/Homepage");
+                history.push("/Login");
               }}
               color="inherit"
             >
               Logout
             </Button>
 
-            <Button
+            {/* <Button
               onClick={() => {
-                history.push("/signup");
+                history.push("/Signup");
               }}
               color="inherit"
             >
               Sign Up
-            </Button>
+            </Button> */}
           </Toolbar>
         </AppBar>
       </div>
